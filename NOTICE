@@ -1,0 +1,6 @@
+Grok Gadgets Home Assistant integration
+Copyright 2026 Grok Gadgets contributors
+
+Original implementation uses Apache-2.0. Home Assistant source is not vendored.
+The optional probe uses the official MCP Python SDK (MIT), httpx (BSD-3-Clause),
+and their locked dependencies; installed packages retain their license notices.
