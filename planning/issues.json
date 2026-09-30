@@ -34,7 +34,9 @@
     ],
     "milestone": "M1",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "7f175c0"
+    ],
     "evidence": "Official sources/date reviewed; all account/runtime gates explicitly open"
   },
   {
@@ -55,9 +57,9 @@
       "P1"
     ],
     "milestone": "M6",
-    "stage": "ready",
+    "stage": "done",
     "commits": [],
-    "evidence": "Pending"
+    "evidence": "13 unittest checks, including official SDK against loopback HTTP fixture endpoint; lint/format/package and clean wheel installation passed 2026-10-04. No real HA/Grok."
   },
   {
     "id": "HA-004",

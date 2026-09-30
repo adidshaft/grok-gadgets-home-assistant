@@ -1,0 +1,56 @@
+{
+  "fixture_notice": "Hand-authored representative discovery; not a real HA capture",
+  "initialize": {
+    "protocolVersion": "2025-11-25",
+    "capabilities": {
+      "tools": {},
+      "resources": {},
+      "prompts": {}
+    },
+    "serverInfo": {
+      "name": "FIXTURE Home Assistant",
+      "version": "fixture-1"
+    }
+  },
+  "tools": {
+    "tools": [
+      {
+        "name": "GetLiveContext",
+        "description": "Fixture state",
+        "inputSchema": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      {
+        "name": "HassTurnOn",
+        "description": "Fixture action never executed",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "resources": {
+    "resources": [
+      {
+        "uri": "homeassistant://assist/context-snapshot",
+        "name": "Fixture context",
+        "mimeType": "text/plain"
+      }
+    ]
+  },
+  "prompts": {
+    "prompts": [
+      {
+        "name": "assist",
+        "description": "Fixture instructions"
+      }
+    ]
+  }
+}
