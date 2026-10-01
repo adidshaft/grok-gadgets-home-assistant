@@ -58,7 +58,9 @@
     ],
     "milestone": "M6",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "d40882d"
+    ],
     "evidence": "13 unittest checks, including official SDK against loopback HTTP fixture endpoint; lint/format/package and clean wheel installation passed 2026-10-04. No real HA/Grok."
   },
   {
