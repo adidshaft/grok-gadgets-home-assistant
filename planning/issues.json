@@ -87,5 +87,33 @@
     "stage": "blocked",
     "commits": [],
     "evidence": "No account/home/hardware access"
+  },
+  {
+    "id": "LAUNCH-DOCS-HA-001",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "Prepare an independently reproducible Home Assistant fixture journey and public contribution/support policies",
+    "intended_behaviour": "A newcomer runs the account-free fixture probe, understands discovery-only limits, finds requirements/checks/support, and can follow canonical adidshaft policy links.",
+    "acceptance": [
+      "README includes exact standalone Python3.11/frozen setup and expected counts with no home-control claim",
+      "Fresh temporary source and separately installed wheel fixture probe pass",
+      "13tests, Ruff and wheel/sdist build pass with no runtime or lock changes",
+      "Contribution/security/support/CODEOWNERS identify actual maintainer and planned reporting channels"
+    ],
+    "dependencies": [
+      "LAUNCH-DOCS-001"
+    ],
+    "labels": [
+      "docs",
+      "home-assistant",
+      "P1"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "docs/verification/launch.md: fresh standalone frozen install,13tests,Ruff,build and installedwheel fixtureprobe pass; LICENSE/NOTICE inside wheel, Apache metadata. No real HA/Grok/device calls."
+    ],
+    "blocker": null
   }
 ]
