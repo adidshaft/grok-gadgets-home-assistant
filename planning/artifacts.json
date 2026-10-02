@@ -1,18 +1,26 @@
 {
-  "status": "local build only; unpublished",
-  "version": "0.1.0a1",
+  "status": "clean committed local build; unpublished",
+  "source_commit": "fe2b93f52124ac199706f62708bb162751f087e2",
+  "source_dirty": false,
+  "build_command": "uv build --offline",
+  "python": "3.11.15",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "wheel_license_files": [
+    "grok_gadgets_home_assistant-0.1.0a1.dist-info/licenses/LICENSE",
+    "grok_gadgets_home_assistant-0.1.0a1.dist-info/licenses/NOTICE"
+  ],
+  "license_expression_apache": true,
   "artifacts": [
     {
-      "file": ".gitignore",
-      "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1"
-    },
-    {
       "file": "grok_gadgets_home_assistant-0.1.0a1-py3-none-any.whl",
-      "sha256": "ccaa745c6c9528175918d92e71a5e22c966523783e57f87ad873387f933240fa"
+      "sha256": "ccaa745c6c9528175918d92e71a5e22c966523783e57f87ad873387f933240fa",
+      "bytes": 8449
     },
     {
       "file": "grok_gadgets_home_assistant-0.1.0a1.tar.gz",
-      "sha256": "f9820d3ab14b6d0567c1c3b7ebabfae0c6d07d7506126af99ba6c386a9ebd913"
+      "sha256": "bb040a6c88449b871221956cdf2c8480fe8eecc7ce9db2d6d6684f33c9b122fd",
+      "bytes": 68553
     }
-  ]
+  ],
+  "version": "0.1.0a1"
 }

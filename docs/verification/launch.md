@@ -18,3 +18,9 @@ The package metadata declares Apache-2.0 original code; inspection found `LICENS
 Raw output and hashes are retained privately under ignored `reports/launch-docs/`. The trial's source/build state is recorded there, so this working-source trial is not mislabeled as a package built from a future commit. The final launch candidate is built from committed sources by the hub publication tooling and carries exact source/SHA-256 provenance. Verify those hashes against the actual selected candidate, rather than treating older `dist` files as current.
 
 The optional real-endpoint procedure was not run. No account, household state, tool execution, OAuth, mobile behavior, real Home Assistant installation or physical device was accessed. HA-004 remains blocked; the fixture proves the diagnostic behavior tested here.
+
+## Committed package checkpoint
+
+`uv build --offline` built wheel and sdist from clean documentation commit `fe2b93f52124ac199706f62708bb162751f087e2`. The [artifact record](../../planning/artifacts.json) identifies that source, environment, actual sizes/hashes and inspected wheel license metadata. The 8,449-byte wheel has SHA-256 `ccaa745c6c9528175918d92e71a5e22c966523783e57f87ad873387f933240fa`; the 68,553-byte sdist has SHA-256 `bb040a6c88449b871221956cdf2c8480fe8eecc7ce9db2d6d6684f33c9b122fd`.
+
+This evidence-only checkpoint changes source documentation, so the final launch candidate rebuilds its sdist from the selected final committed source. Existing local packages are unpublished; current-candidate source and hashes take precedence over this historical checkpoint.
