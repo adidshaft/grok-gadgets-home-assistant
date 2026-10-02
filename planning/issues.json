@@ -110,9 +110,12 @@
     ],
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "fe2b93f52124ac199706f62708bb162751f087e2"
+    ],
     "evidence": [
-      "docs/verification/launch.md: fresh standalone frozen install,13tests,Ruff,build and installedwheel fixtureprobe pass; LICENSE/NOTICE inside wheel, Apache metadata. No real HA/Grok/device calls."
+      "docs/verification/launch.md: fresh standalone frozen install,13tests,Ruff,build and installedwheel fixtureprobe pass; LICENSE/NOTICE inside wheel, Apache metadata. No real HA/Grok/device calls.",
+      "Clean documentation commit fe2b93f built with uv build --offline; actual wheel/sdist sizes, hashes, source and package license metadata recorded in planning/artifacts.json."
     ],
     "blocker": null
   }
