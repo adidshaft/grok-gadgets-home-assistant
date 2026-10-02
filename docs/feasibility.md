@@ -1,5 +1,7 @@
 # Feasibility record — 4 October 2026
 
+Historical documentation review. The current software first step and tested limits are in the [README](../README.md) and [verification](verification.md). This record is not a fresh platform or account test.
+
 Evidence: official documentation review only; no Grok account, HA installation, or phone was connected. Source dates below are publication/update dates where provided. Recheck at actual onboarding.
 
 | Question | Finding and primary source | Remaining experiment |

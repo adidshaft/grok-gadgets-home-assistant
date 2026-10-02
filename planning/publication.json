@@ -1,7 +1,7 @@
 {
   "status": "prepared; not activated",
-  "owner": null,
+  "owner": "adidshaft",
   "required_check": "home-assistant-checks",
   "main": {"pull_requests_required": true, "required_approving_reviews": 0, "resolve_conversations": true, "allow_force_push": false, "allow_deletion": false},
-  "before_publication": ["Select GitHub owner and actual maintainers", "Configure private vulnerability reporting", "Validate policy links", "Migrate ledger IDs and labels", "Authorize remote creation/push separately", "Pin workflow actions to reviewed immutable commits"]
+  "before_publication": ["Verify intended adidshaft repositories and actual maintainers", "Configure private vulnerability reporting", "Validate policy links", "Migrate ledger IDs and labels", "Authorize remote creation/push separately", "Pin workflow actions to reviewed immutable commits"]
 }
