@@ -19,7 +19,15 @@ flowchart LR
 
 The solid lines show the software-only first step. The dotted lines show the proposed connection to a real home.
 That connection needs an authorized installation, compatible authentication, and a reachable endpoint.
-Home Assistant can connect directly to the Bot. It does not need the Grok Gadgets gateway or another home-control server.
+The proposed route connects the Bot directly to Home Assistant's upstream MCP server.
+It does not need the Grok Gadgets gateway or another home-control server.
+
+Local fixture tests need no public hosting. The Home Assistant operator runs its MCP server.
+Grok/xAI hosts Grok Bot. A cloud Bot needs a publicly reachable HTTPS endpoint with compatible
+authentication. A local address used by the probe is not directly reachable from Grok cloud.
+A tunnel adds reachability only. It does not add authentication to the MCP service.
+See the [hosting FAQ](https://github.com/adidshaft/grok-gadgets/blob/main/docs/getting-started/hosting.md)
+for endpoint ownership, tunnel operation, and proposed product hosting choices.
 
 ## Run the fixture first
 
@@ -66,6 +74,10 @@ They use mocks and temporary loopback fixture transports.
 ## Where this project fits
 
 The [gateway](https://github.com/adidshaft/grok-gadgets-gateway) serves the separate gadget simulator, USB devices and SDK applications. The [Linux SDK](https://github.com/adidshaft/grok-gadgets-linux-sdk) and [ESP32 SDK](https://github.com/adidshaft/grok-gadgets-esp32-sdk) help build new gadgets. This repository reuses Home Assistant's own MCP integration and entity exposure. This repository provides discovery diagnostics and a setup guide. It does not provide an adapter or guarantee general compatibility.
+
+The gateway has no remote HTTPS or OAuth MCP service. `HARD-GROK-REMOTE-001` tracks that
+gateway work. Home Assistant has its own upstream MCP service and authentication.
+Its actual Bot compatibility remains a separate gate under `HA-004`.
 
 A cloud Grok Bot cannot launch a path on your computer. Check authentication, transport, network access, and call results on the actual client.
 The local probe does not prove OAuth compatibility, equal desktop/mobile behavior, automatic event delivery, or physical effects.
