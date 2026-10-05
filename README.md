@@ -1,8 +1,13 @@
 # Grok Gadgets: Home Assistant
 
-Inspect MCP discovery and prepare an existing Home Assistant installation for Grok using Home Assistant's upstream MCP server.
+This guide uses ASD-STE100-inspired writing. It does not claim formal compliance. See the [project writing guide](https://github.com/adidshaft/grok-gadgets/blob/main/docs/contributing/writing-guide.md).
 
-**Experimental alpha — discovery fixtures and local client transports are tested. Actual Home Assistant, native Grok invocation, mobile clients and physical home devices remain unverified.** The included probe lists capabilities; it performs no tool calls, resource reads or home control.
+Use the diagnostic probe to inspect MCP discovery. Use the setup guide to prepare an existing Home Assistant installation for Grok.
+This project uses Home Assistant's own MCP server.
+
+**Experimental alpha.** Tests cover discovery fixtures and local client transports.
+We have not verified an actual Home Assistant installation, native Grok calls, mobile clients, or physical home devices.
+The probe lists capabilities. It does not call tools, read resources, or control your home.
 
 ```mermaid
 flowchart LR
@@ -12,13 +17,17 @@ flowchart LR
     HA -.-> HOME["Selected exposed home entities"]
 ```
 
-The solid path is the software-only first step. The dotted path is the intended real-home route, requiring an authorized installation, compatible authentication and reachable endpoint. Home Assistant can connect directly to the Bot; it does not need a second Grok Gadgets gateway or duplicate home-control server.
+The solid lines show the software-only first step. The dotted lines show the proposed connection to a real home.
+That connection needs an authorized installation, compatible authentication, and a reachable endpoint.
+Home Assistant can connect directly to the Bot. It does not need the Grok Gadgets gateway or another home-control server.
 
 ## Run the fixture first
 
 Clone [adidshaft/grok-gadgets-home-assistant](https://github.com/adidshaft/grok-gadgets-home-assistant) and enter its root directory.
 
-Requirements: Python **3.11** and `uv`, with internet access for the initial locked dependency installation. No sibling checkout, Home Assistant instance, Grok account, token or device is needed. The recorded host is macOS arm64; Windows/Intel Mac and real-home installation are not verified.
+You need Python **3.11**, `uv`, and internet access for the first dependency installation.
+You do not need another repository, Home Assistant, a Grok account, a token, or a device.
+Tests used macOS arm64. Windows, Intel Mac, and real-home installation remain unverified.
 
 ```sh
 uv sync --frozen --python 3.11
@@ -41,7 +50,10 @@ Expected fixture summary:
 }
 ```
 
-The command also reports the fixture's MCP protocol version and context-capability flags. These counts describe hand-authored discovery data, not a captured Home Assistant release. The test suite reports **13 tests passed**, covering discovery validation, bounded pagination, authentication failures, URL safeguards and redacted diagnostics through mocked and ephemeral loopback fixture transports.
+The command also reports the fixture's MCP protocol version and context-capability flags.
+The fixture contains manually written discovery data. It does not contain results from a Home Assistant release.
+The recorded test run passed **13 tests**. Tests cover discovery validation, pagination limits, authentication failures, URL checks, and private-data removal.
+They use mocks and temporary loopback fixture transports.
 
 | Next step | Guide |
 | --- | --- |
@@ -53,9 +65,11 @@ The command also reports the fixture's MCP protocol version and context-capabili
 
 ## Where this project fits
 
-The [gateway](https://github.com/adidshaft/grok-gadgets-gateway) serves the separate gadget simulator, USB devices and SDK applications. The [Linux SDK](https://github.com/adidshaft/grok-gadgets-linux-sdk) and [ESP32 SDK](https://github.com/adidshaft/grok-gadgets-esp32-sdk) help build new gadgets. This repository reuses Home Assistant's own MCP integration and entity exposure. It currently adds discovery diagnostics and a recipe, not an adapter or a general compatibility guarantee.
+The [gateway](https://github.com/adidshaft/grok-gadgets-gateway) serves the separate gadget simulator, USB devices and SDK applications. The [Linux SDK](https://github.com/adidshaft/grok-gadgets-linux-sdk) and [ESP32 SDK](https://github.com/adidshaft/grok-gadgets-esp32-sdk) help build new gadgets. This repository reuses Home Assistant's own MCP integration and entity exposure. This repository provides discovery diagnostics and a setup guide. It does not provide an adapter or guarantee general compatibility.
 
-A cloud Grok Bot cannot launch a path on your computer. Its authentication, transport, network reachability and inspectable invocation results must be checked on the actual supported client. The local probe does not establish OAuth compatibility, desktop/mobile parity, unsolicited event delivery, or a physical device effect. The [historical feasibility review](docs/feasibility.md) records the source/date and open experiments; it is not a freshly verified platform claim.
+A cloud Grok Bot cannot launch a path on your computer. Check authentication, transport, network access, and call results on the actual client.
+The local probe does not prove OAuth compatibility, equal desktop/mobile behavior, automatic event delivery, or physical effects.
+The [historical feasibility review](docs/feasibility.md) records sources, dates, and pending experiments. It does not verify the current platform.
 
 Use the [issue chooser](https://github.com/adidshaft/grok-gadgets-home-assistant/issues/new/choose). Keep tokens and household names private; vulnerabilities use [Security](SECURITY.md). General discussion is at [r/GrokGadgets](https://www.reddit.com/r/GrokGadgets/) under the hub's [Code of Conduct](https://github.com/adidshaft/grok-gadgets/blob/main/CODE_OF_CONDUCT.md).
 
