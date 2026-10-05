@@ -173,5 +173,84 @@
       "2026-10-05: uv sync --frozen, Ruff check/format and all 13 unittest cases passed. git diff --check passed. Fixtures and loopback transports only; no actual Home Assistant, Grok or device action."
     ],
     "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-003",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "--allow-local-http trusted *.local names without resolving them (review finding HA-03)",
+    "acceptance": [
+      "Plain-HTTP hostnames are resolved; every resolved address must be loopback, or with --allow-local-http RFC 1918, ULA or 100.64.0.0/10",
+      "Link-local, public, mixed and unresolvable answers are rejected",
+      "Every request connects to the validated address with the original Host header, so a later DNS answer cannot redirect the token",
+      "A one-line cleartext warning is printed for non-loopback HTTP"
+    ],
+    "dependencies": [],
+    "labels": [
+      "security",
+      "home-assistant",
+      "P2"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "src/ha_probe/__init__.py validate_url, GuardedTransport",
+      "tests/test_probe.py test_http_names_are_resolved_and_every_address_checked, test_local_http_connects_only_to_the_checked_address, test_loopback_http_has_no_cleartext_warning",
+      "Mock resolver and mock/loopback transports only; no real LAN, mDNS or Home Assistant used"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-004",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "The probe read unbounded response bodies (review finding HA-04)",
+    "acceptance": [
+      "Responses over 4 MiB are refused by declared Content-Length or by streamed byte count",
+      "Compressed responses are refused and requests ask for identity encoding, so decompression cannot bypass the cap"
+    ],
+    "dependencies": [],
+    "labels": [
+      "security",
+      "home-assistant",
+      "P2"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "src/ha_probe/__init__.py MAX_RESPONSE_BYTES, _CappedStream",
+      "tests/test_probe.py test_oversized_declared_response_is_refused, test_oversized_streamed_response_is_refused, test_compressed_response_is_refused",
+      "Mutation check: lifting the limit makes both size tests fail"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-006",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "Read-only and redirect guarantees depended on call sites and mcp library behaviour (review finding HA-06)",
+    "acceptance": [
+      "The probe talks to MCP only through a slotted facade exposing initialize and list_* methods",
+      "The transport refuses any JSON-RPC method other than discovery, batches, other origins and other HTTP methods before sending",
+      "Every redirect is refused by the probe itself: cross-origin, same-origin and http-to-https, with regression tests",
+      "CLI redirect failure stays generic, without token or location"
+    ],
+    "dependencies": [],
+    "labels": [
+      "security",
+      "home-assistant",
+      "P3"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "src/ha_probe/__init__.py ReadOnlyDiscovery, GuardedTransport, DISCOVERY_METHODS",
+      "tests/test_probe.py test_read_only_facade_exposes_only_discovery, test_transport_refuses_actions_before_sending, test_redirects_are_never_followed, test_cross_origin_redirect_over_sockets_reaches_nobody, test_cli_redirect_failure_is_generic",
+      "Mutation check: bypassing GuardedTransport makes the redirect, pinning, compression and method tests fail"
+    ],
+    "blocker": null
   }
 ]
