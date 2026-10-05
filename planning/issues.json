@@ -193,7 +193,9 @@
     ],
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "ee6446e"
+    ],
     "evidence": [
       "src/ha_probe/__init__.py validate_url, GuardedTransport",
       "tests/test_probe.py test_http_names_are_resolved_and_every_address_checked, test_local_http_connects_only_to_the_checked_address, test_loopback_http_has_no_cleartext_warning",
@@ -218,7 +220,9 @@
     ],
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "ee6446e"
+    ],
     "evidence": [
       "src/ha_probe/__init__.py MAX_RESPONSE_BYTES, _CappedStream",
       "tests/test_probe.py test_oversized_declared_response_is_refused, test_oversized_streamed_response_is_refused, test_compressed_response_is_refused",
@@ -245,7 +249,9 @@
     ],
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "ee6446e"
+    ],
     "evidence": [
       "src/ha_probe/__init__.py ReadOnlyDiscovery, GuardedTransport, DISCOVERY_METHODS",
       "tests/test_probe.py test_read_only_facade_exposes_only_discovery, test_transport_refuses_actions_before_sending, test_redirects_are_never_followed, test_cross_origin_redirect_over_sockets_reaches_nobody, test_cli_redirect_failure_is_generic",
@@ -273,10 +279,96 @@
     ],
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "024d891"
+    ],
     "evidence": [
       ".github/workflows/checks.yml",
       "2026-10-05 local macOS run of the full workflow sequence with uv 0.12.3 on CPython 3.11.15, 3.12.13, 3.13.5 and 3.14.7: 26 tests OK on each. Hosted GitHub Actions run remains unverified until authorized push."
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-001",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "No concrete, safe recipe for a cloud Grok Bot to reach Home Assistant (review finding HA-01)",
+    "acceptance": [
+      "Remote route section: Option A Home Assistant Cloud URL; Option B Cloudflare Tunnel or reverse proxy with External URL equal to the public hostname and trusted proxies; never port-forward plain HTTP",
+      "ha-probe is run first against the same HTTPS URL",
+      "Grok Bot Remote HTTPS custom MCP at https://<external>/api/mcp/assist with a Bot-secret bearer header or OAuth; HA IndieAuth client IDs and no RFC 7591 registration are explained; DCR-only clients use the bearer route",
+      "Every Grok step is marked unverified and the reported September 2026 OAuth/DCR and secret-header blocker is stated"
+    ],
+    "dependencies": [
+      "HA-004"
+    ],
+    "labels": [
+      "docs",
+      "home-assistant",
+      "P1"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "docs/setup.md sections 4 and Current reported blocker; docs/feasibility.md 5 October update",
+      "Sources read 2026-10-05: home-assistant.io/integrations/mcp_server, home-assistant.io/integrations/http, docs.x.ai/grok-bot/team-bots, Cursor forum thread 171877",
+      "Documentation only. No tunnel, Home Assistant Cloud, Home Assistant or Grok Bot was used; the route is unverified and native compatibility stays blocked under HA-004"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-002",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "The recipe understated the token's scope and who can use it in a Bot (review finding HA-02)",
+    "acceptance": [
+      "A dedicated non-admin test user is mandatory",
+      "Control Home Assistant is turned off for the first read-only test and enabled only for the later control check",
+      "The long-lived token is described as a full user credential beyond exposed entities",
+      "Personal Bot only: a Team Bot secret gives every teammate and Slack channel access",
+      "Revoke the token after testing"
+    ],
+    "dependencies": [],
+    "labels": [
+      "docs",
+      "security",
+      "home-assistant",
+      "P1"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "docs/setup.md section 2 and What the token can do; SECURITY.md",
+      "Per-entity permission absence for non-admin users is stated from documentation and review, not checked on a live instance"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-005",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "The /api/mcp/<api_id> restriction was not documented as intentional (review finding HA-05)",
+    "acceptance": [
+      "Code and setup guide state that only /api/mcp and /api/mcp/assist are accepted because other LLM APIs require an administrator",
+      "A test rejects /api/mcp/custom_api"
+    ],
+    "dependencies": [],
+    "labels": [
+      "docs",
+      "home-assistant",
+      "P3"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [
+      "ee6446e"
+    ],
+    "evidence": [
+      "src/ha_probe/__init__.py ALLOWED_PATHS",
+      "docs/setup.md Which URL paths the probe accepts",
+      "tests/test_probe.py test_only_assist_paths_are_allowed"
     ],
     "blocker": null
   }
