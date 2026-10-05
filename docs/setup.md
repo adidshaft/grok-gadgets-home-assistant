@@ -1,38 +1,92 @@
 # Home Assistant setup recipe
 
-## Local fixture first
+## Run the local fixture first
 
-Run the [README fixture commands](../README.md#run-the-fixture-first). Fixture data is hand-authored representative MCP discovery data, not captured from a real HA release. The probe only initializes and lists tools/resources/prompts; it never executes a tool, reads a resource, or changes a light.
+Run the [README fixture commands](../README.md#run-the-fixture-first).
+The fixture contains manually written MCP discovery data. It is not a capture from a Home Assistant release.
+The probe initializes the connection and lists tools, resources, and prompts.
+It does not execute tools, read resources, or change a light.
 
-## Prepare a real home (not performed here)
+## Prepare a real home
 
-This is a dated preparation recipe based on the [4 October 2026 feasibility record](feasibility.md). Verify the actual installation/client interface when an authorized home test is scheduled. These steps are separate from the account-free quickstart.
+**This procedure has not been performed here.** It is based on the [4 October 2026 feasibility record](feasibility.md).
+Check the actual installation and client interface before an authorized home test.
+These steps are separate from the account-free quickstart.
 
-1. Record HA version, selected test light/sensor, and current state. Choose a harmless test light; leave locks, alarms, garage doors and other consequential entities unexposed for this acceptance run.
-2. In HA Settings → Devices & services add Model Context Protocol Server. Select Assist, then expose only the chosen entities through the exposed-entity page. Confirm ordinary dashboard controls still work. Do not interpret exposure as a token scope limiting every HA API.
-3. Create a dedicated non-administrator test user where practical. Use its access token from HA profile for the diagnostic client; keep it in `HA_TOKEN`, never command arguments or committed configuration. OAuth is preferable for a compatible Bot client; the CLI probe does not implement interactive OAuth.
-4. On your own machine, set `HA_MCP_URL` to the full endpoint, e.g. `http://homeassistant.local:8123/api/mcp/assist`. Set `HA_TOKEN` privately, then run `uv run ha-probe`. Non-HTTPS is accepted only for loopback by default; a LAN HTTP URL requires `--allow-local-http`, which accepts private IP addresses or `.local` hostnames and never a public HTTP endpoint. It changes no exposure or firewall settings.
-5. Check the output's evidence level, counts, context-tool/resource availability. It suppresses household names and server-provided descriptions. A 401 indicates token/auth review; 404 suggests integration/selected API mismatch. The CLI returns a generic failure without leaking exception text.
+1. Record the Home Assistant version and the selected light or sensor. Record its current state.
+2. Choose a harmless test light. Do not expose locks, alarms, garage doors, or other devices that could cause harm during this test.
+3. In Home Assistant, open Settings → Devices & services. Add Model Context Protocol Server.
+4. Select Assist. Use the exposed-entity page to expose only the selected entities.
+5. Check that ordinary dashboard controls still work. Entity exposure does not restrict every Home Assistant API through token scopes.
+6. Create a dedicated test user without administrator access, if practical.
+7. Get its access token from the Home Assistant profile. Store it privately in `HA_TOKEN`. Do not use command arguments or committed configuration.
+8. Set `HA_MCP_URL` to the full endpoint on your machine, for example `http://homeassistant.local:8123/api/mcp/assist`.
+9. Run `uv run ha-probe`. For an authorized LAN HTTP test, add `--allow-local-http`.
+10. Check the evidence level, counts, and context-tool/resource availability in the output.
 
-## Existing Grok Bot experiment (pending account and reachability)
+Prefer OAuth for a compatible Bot client. The CLI probe does not implement interactive OAuth.
 
-Use the existing Bot's desktop plugin/custom-MCP setup if present. Proposed route: Remote HTTPS pointing directly at the already authorized HA endpoint. Do not paste the Mac's local URL/path into a cloud Command configuration. Do not publish the personal Bot as a Team Bot solely to follow the Team Bots documentation.
+By default, the probe permits non-HTTPS connections only on loopback.
+`--allow-local-http` also permits private IP addresses and `.local` hostnames.
+It never permits a public HTTP endpoint. It does not change exposure or firewall settings.
 
-Before activating a connection, confirm: endpoint TLS/authentication; the Bot's actual supported transport; HA-compatible OAuth client ID/callback or supported secret/bearer configuration; and authorized cloud reachability. Exact Grok settings and callback URI must come from the actual UI. No guessed OAuth identifier or fabricated ready-to-import Grok JSON is included.
+The probe hides household names and server descriptions. A 401 error indicates an authentication check is necessary.
+A 404 error suggests an integration or selected API mismatch. The CLI returns a generic error without exception text.
 
-After account authorization, use this acceptance sequence:
+## Test an existing Grok Bot
 
-1. Discover tools and confirm excluded entities remain unavailable.
-2. Ask for chosen sensor/light state; compare with HA dashboard and timestamp.
-3. Ask to turn on the harmless light, change a supported value, then restore its original state. Save redacted tool name/arguments/result and separately record visible physical observations.
-4. Disconnect/revoke test access; confirm the Bot reports failure or unconfirmed operation. Restore access and check recovery.
-5. Repeat state/control from the same Bot on available mobile clients. Record exact versions; do not infer device support from desktop success.
-6. Leave ordinary HA dashboard/automations functional. Close Bot client and check HA controls; shutting down the HA host stops its service.
+**Account access and network reachability remain pending.**
+Use the Bot's desktop plugin or custom-MCP setup, if available.
+The proposed connection uses remote HTTPS directly to the authorized Home Assistant endpoint.
+Do not put a Mac-local URL or path in a cloud Command configuration.
+Do not publish a personal Bot as a Team Bot only to follow Team Bots documentation.
 
-Do not advertise button-triggered Bot wake: upstream HA MCP provides no notification stream. Home automations and supported notification channels can be investigated as a separate authorized feature. The probe itself performs no ongoing monitoring.
+Before you activate a connection, verify these requirements:
 
-## Evidence and rollback
+- The endpoint uses TLS and authentication.
+- The Bot supports the selected transport.
+- OAuth uses a Home Assistant-compatible client ID and callback, or the client supports the required secret/bearer configuration.
+- The endpoint is reachable through an authorized cloud connection.
 
-Save a redacted report outside Git containing date, component commit, HA/client versions, transport, auth method (never token), URL category (local/approved remote), and each result. Separate fixture tested, Grok verified, hardware verified and independently reproduced. If removing the experiment, revoke its token/OAuth grant, remove the Bot plugin, restore entity exposure, and remove the HA MCP integration only if nobody else uses it. No cloud dependency or subscription is required for fixture checks.
+Get the exact Grok settings and callback URI from the actual UI.
+Do not invent an OAuth identifier or a ready-to-import Grok configuration.
 
-Source and unresolved auth details: [feasibility](feasibility.md). Do not expose an endpoint or spend money merely to run this recipe.
+After account authorization, perform these checks:
+
+1. Discover tools. Check that excluded entities remain unavailable.
+2. Request the selected sensor or light state. Compare the result and timestamp with the Home Assistant dashboard.
+3. Ask to turn on the harmless light. Change a supported value. Restore the original state.
+4. Save the tool name, arguments, and result with private data removed. Record physical observations separately.
+5. Disconnect or revoke test access. Check that the Bot reports failure or unconfirmed operation.
+6. Restore access. Check recovery.
+7. Repeat state and control checks with the same Bot on available mobile clients. Record exact versions.
+8. Close the Bot client. Check that ordinary Home Assistant controls and automations still work.
+
+Desktop success does not prove mobile support. Shutting down the Home Assistant host stops its service.
+
+Do not advertise automatic Bot wake-up from a button event. The upstream MCP server provides no notification stream in this dated recipe.
+Home automations and supported notification channels require a separate authorized investigation.
+The probe does not monitor your home continuously.
+
+## Record evidence
+
+Save a report outside Git. Remove private data. Include:
+
+- Test date and component commit.
+- Home Assistant and client versions.
+- Transport and authentication method. Never include the token.
+- URL category: local or approved remote.
+- Each check and its result.
+
+Keep these evidence levels separate: fixture tested, Grok verified, hardware verified, and independently reproduced.
+Fixture checks need no cloud dependency or subscription.
+
+## Remove the experiment
+
+1. Revoke its token or OAuth grant.
+2. Remove the Bot plugin.
+3. Restore the previous entity exposure.
+4. Remove the Home Assistant MCP integration only if nobody else uses it.
+
+See [feasibility](feasibility.md) for sources and unresolved authentication questions.
+Do not expose an endpoint or spend money only to run this recipe.

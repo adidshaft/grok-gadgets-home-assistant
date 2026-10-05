@@ -1,6 +1,6 @@
 # Support
 
-Run the [fixture quickstart](README.md#run-the-fixture-first) before diagnosing a real installation.
+Run the [fixture quickstart](README.md#run-the-fixture-first) before you diagnose a real installation.
 
 | Symptom | First check | Expected outcome |
 | --- | --- | --- |
@@ -11,8 +11,21 @@ Run the [fixture quickstart](README.md#run-the-fixture-first) before diagnosing 
 | Tool/context availability differs | Record HA/client versions and a redacted summary | Establish a specific compatibility issue rather than assume universal coverage |
 | Bot cannot reach a local URL | Establish the actual Bot process location and approved reachable route | No assumption that a cloud client can access your local computer |
 
-The CLI intentionally gives a generic real-endpoint failure. A private 401/404 investigation can distinguish authentication from integration/path problems; do not paste full remote error bodies into public logs.
+The CLI gives a generic error for real-endpoint failures. Inspect 401 or 404 errors privately to identify authentication or path problems.
+Do not copy full remote error messages into public logs.
 
-For a reproducible defect, include component commit, host/Python/client versions, exact command, fixture versus real-installation evidence, and expected/observed result. Use the [planned issue chooser](https://github.com/adidshaft/grok-gadgets-home-assistant/issues/new/choose) after activation; [local issues](planning/issues.json) remain authoritative before migration. Discussion uses [r/GrokGadgets](https://www.reddit.com/r/GrokGadgets/). Security reports use [Security](SECURITY.md); private conduct reports use [adidshaft@kyokasuigetsu.xyz](mailto:adidshaft@kyokasuigetsu.xyz).
+Use the [issue chooser](https://github.com/adidshaft/grok-gadgets-home-assistant/issues/new/choose) to report a defect. Include:
 
-See [setup](docs/setup.md) for the separately gated home procedure. Actual Home Assistant, OAuth/client compatibility, desktop/mobile behavior, physical devices and independent-human reproduction remain open. The probe does not run ongoing monitoring or wake a Bot on an outside event.
+- Component commit.
+- Host, Python, and client versions.
+- Exact command, with private values removed.
+- Evidence source: fixture or real installation.
+- Expected result and actual result.
+
+Use [r/GrokGadgets](https://www.reddit.com/r/GrokGadgets/) for discussion.
+Use [Security](SECURITY.md) for vulnerabilities.
+Send private conduct reports to [adidshaft@kyokasuigetsu.xyz](mailto:adidshaft@kyokasuigetsu.xyz).
+
+See [setup](docs/setup.md) for the real-home procedure. Get separate authorization before you run it.
+Actual Home Assistant, OAuth/client compatibility, desktop/mobile behavior, and physical devices remain unverified.
+An independent person has not reproduced the results. The probe does not monitor your home or wake a Bot when an event occurs.
