@@ -1,13 +1,14 @@
 # Support
 
-Run the [fixture quickstart](README.md#run-the-fixture-first) before you diagnose a real installation.
+Run the [fixture quickstart](README.md#quickstart) before you diagnose a real installation.
 
 | Symptom | First check | Expected outcome |
 | --- | --- | --- |
-| `ha-probe` is unavailable | Run `uv sync --frozen --python 3.11`, then use `uv run ha-probe` | The local console entry point runs |
+| `ha-probe` is unavailable | Run `uv sync --frozen`, then use `uv run ha-probe` | The local console entry point runs |
 | Fixture cannot be found | Run from this repository root and use `fixtures/assist.json` | Hand-authored discovery validates |
 | Generic probe failure | Check URL, authentication, integration and reachability privately | No token/exception/household data is printed |
-| Plaintext endpoint rejected | Use HTTPS, or the explicit local/private HTTP option only for an authorized local test | Public plaintext endpoints remain rejected |
+| Plaintext endpoint rejected | Use HTTPS, or `--allow-local-http` only for an authorized local test. Every address the name resolves to must be private | Public, link-local, and mixed-answer plaintext endpoints remain rejected |
+| Redirect or oversized response | Use the final `/api/mcp/assist` URL directly; check what the proxy returns | The probe never follows redirects and refuses responses over 4 MiB |
 | Tool/context availability differs | Record HA/client versions and a redacted summary | Establish a specific compatibility issue rather than assume universal coverage |
 | Bot cannot reach a local URL | Establish the actual Bot process location and approved reachable route | No assumption that a cloud client can access your local computer |
 
