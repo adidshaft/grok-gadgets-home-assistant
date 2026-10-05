@@ -383,9 +383,9 @@
     "owner": "grok-gadgets-home-assistant",
     "problem": "The README did not say plainly what the project is or what works with Grok Bot today (review product lens)",
     "acceptance": [
-      "One-paragraph opening: Home Assistant already ships an MCP server; this repository adds a read-only check and a recipe, no second server",
-      "What works with Grok Bot today: the probe is tested with fixtures and local servers only; the remote HTTPS Grok route is documented but unverified, with the reported blocker linked",
-      "Three-step quickstart, then short details"
+      "First screen gives the Grok Bot purpose, current fixture-only verification, and the account-free quickstart",
+      "One setup recipe owns real-home and remote instructions; authentication support is checked before enabling exposure",
+      "The README retains zero-action scope and full-user token warning; the historical community report is not presented as verified platform support"
     ],
     "dependencies": [
       "REVIEW-HA-001"
@@ -400,7 +400,8 @@
     "commits": [],
     "evidence": [
       "README.md, SUPPORT.md",
-      "Documentation only; fixture quickstart re-run 2026-10-05 with the documented commands"
+      "Documentation only; fixture quickstart re-run 2026-10-05 with the documented commands",
+      "2026-10-05 finish review: shortened README and removed duplicate setup/security detail. docs/setup.md checks secret-backed bearer or compatible OAuth before remote exposure; bearer fallback is conditional, not a promised path. Full local check sequence passes: frozen install, Ruff lint/format, 26 tests, wheel/sdist and fixture probe (2 tools/1 resource/1 prompt; zero calls/reads; Grok/hardware false). No real Home Assistant, account, tunnel or paid service used."
     ],
     "blocker": null
   }

@@ -1,47 +1,27 @@
 # Grok Gadgets: Home Assistant
 
-Home Assistant already ships its own MCP server, so Grok Bot does not need a second one.
-This repository gives you two things: `ha-probe`, a safe read-only check of what your
-Home Assistant MCP server exposes, and a [setup recipe](docs/setup.md) for connecting Grok Bot to it.
+Check what Home Assistant can offer your existing **Grok Bot**. `ha-probe` lists the tools,
+resources, and prompts from Home Assistant's own MCP server. It never calls a tool or reads
+a resource. A [setup recipe](docs/setup.md) describes the unverified Bot connection.
 It is an experimental alpha and is not affiliated with xAI or Home Assistant.
 
 ## What works with Grok Bot today
 
-- **Works:** `ha-probe` lists the tools, resources, and prompts your Home Assistant offers. It never calls a tool,
-  reads a resource, or changes your home. It is tested with fixtures and local test servers.
-  We have not run it against a real Home Assistant installation.
-- **Documented, not verified:** connecting Grok Bot to Home Assistant through a remote HTTPS URL.
-  A September 2026 Cursor forum report says Grok Bot custom MCP accepts only OAuth with dynamic registration,
-  which Home Assistant does not support. If that is still true, this route is blocked today.
-  See [Current reported blocker](docs/setup.md#current-reported-blocker).
-- **Not provided:** another MCP server, home control, or Bot wake-up from home events.
+**The probe works with fixtures and local test servers. Real Home Assistant and Grok Bot use remain unverified.**
+Bot setup needs compatible authentication and a reachable HTTPS URL. Check the
+[authentication gate](docs/setup.md#4-remote-route) before exposing a home server.
+This package adds no home-control tools or event-triggered Bot tasks.
 
 ## Quickstart
 
-You need Python 3.11 or later and [`uv`](https://docs.astral.sh/uv/).
+You need Python 3.11+ and [`uv`](https://docs.astral.sh/uv/). From this repository, run:
 
-1. **Try it with no home and no account.**
+```sh
+uv sync --frozen
+uv run ha-probe --fixture fixtures/assist.json
+```
 
-   ```sh
-   uv sync --frozen
-   uv run ha-probe --fixture fixtures/assist.json
-   ```
-
-2. **Check your own Home Assistant, read-only.** First do [Prepare Home Assistant safely](docs/setup.md#2-prepare-home-assistant-safely):
-   use a non-admin test user, turn off _Control Home Assistant_, and expose only one harmless entity.
-
-   ```sh
-   read -rs HA_TOKEN; export HA_TOKEN
-   export HA_MCP_URL=https://<your-home-assistant>/api/mcp/assist
-   uv run ha-probe
-   ```
-
-3. **Connect Grok Bot (unverified).** Follow the [Remote route](docs/setup.md#4-remote-route).
-   Use a personal Bot only, never paste the token into chat, and revoke the token after the test.
-
-## Details
-
-The fixture run prints counts and fixed flags only:
+No home, account, or token is needed. Expected result (other fixed flags omitted):
 
 ```json
 {
@@ -56,14 +36,15 @@ The fixture run prints counts and fixed flags only:
 }
 ```
 
-The probe enforces these limits in code, and tests check each one:
+Next, [prepare a Home Assistant test user and run discovery](docs/setup.md#2-prepare-home-assistant-safely).
+That guide keeps _Control Home Assistant_ off for the first test and explains HTTPS, token scope, and cleanup.
+**A Home Assistant token is a full user credential.** Never paste it into chat or an issue. Revoke it after testing.
 
-- It speaks to MCP only through a list-only interface. Its transport refuses any non-discovery method before sending.
-- It needs HTTPS. Plain HTTP is accepted only for loopback, or with `--allow-local-http` for hosts whose every
-  resolved address is private (LAN, IPv6 ULA, or 100.64.0.0/10). It then connects only to the address it checked.
-- It never follows redirects. It refuses responses over 4 MiB, URLs with embedded credentials,
-  and Home Assistant APIs other than Assist, which need an administrator.
-- It hides names and descriptions, prints one generic line on failure, and never prints the token.
+## Details
+
+The probe enforces discovery-only requests, refuses redirects, and caps responses at 4 MiB.
+It hides household names and descriptions. The [setup recipe](docs/setup.md#3-check-discovery-locally)
+explains the local HTTP opt-in and other limits.
 
 Run the checks with `uv run ruff check .`, `uv run ruff format --check .`, and
 `uv run python -m unittest discover -s tests -v`. CI runs them on Python 3.11–3.14.

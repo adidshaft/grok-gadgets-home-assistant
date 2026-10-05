@@ -11,7 +11,7 @@ Grok/xAI hosts Grok Bot. See the [hosting FAQ](https://github.com/adidshaft/grok
 
 ## 1. Run the local fixture first
 
-Run the [README quickstart](../README.md#quickstart) step 1. The fixture is hand-written MCP
+Run the [README quickstart](../README.md#quickstart). The fixture is hand-written MCP
 discovery data, not a capture from a Home Assistant release. The probe initializes the connection and
 lists tools, resources, and prompts. It cannot execute tools, read resources, or change a light.
 
@@ -78,6 +78,11 @@ This LAN URL is only for the local probe. Grok Bot runs in the cloud and cannot 
 
 ## 4. Remote route
 
+**Check authentication before enabling remote access.** Your personal Grok Bot must offer either
+a secret-backed bearer header or OAuth compatible with Home Assistant. Neither has been verified here.
+If the account lacks both, stop: an HTTPS URL or tunnel cannot solve that mismatch.
+See [Current reported blocker](#current-reported-blocker) and keep `HA-004` open until an actual account test passes.
+
 A cloud Grok Bot needs a public **HTTPS** URL for Home Assistant. Pick one option.
 **Never port-forward Home Assistant's plain-HTTP port (80 or 8123) to the internet.**
 Either option exposes the whole Home Assistant login and API on the internet, not only MCP.
@@ -113,7 +118,7 @@ Keep Home Assistant updated and use strong passwords with multi-factor authentic
 Before you touch Grok, run the probe against the exact URL Grok will use:
 
 ```sh
-export HA_MCP_URL=https://<external-host>/api/mcp/assist
+export HA_MCP_URL='https://YOUR_EXTERNAL_HOST/api/mcp/assist'
 uv run ha-probe
 ```
 
@@ -122,10 +127,8 @@ This proves only that the URL, TLS, and token work from your computer. It does n
 
 ### Then: add the server to a personal Grok Bot (unverified)
 
-**Use a personal Bot only.** A Team Bot shares its plugins and secrets with every teammate's
-conversation and with its Slack channels. xAI says: "The Bot can use every secret in any teammate's
-conversation, so treat a secret as access you are giving the whole team." A Home Assistant token in a
-Team Bot gives every teammate and every Slack channel the Bot is in access to your home.
+**Use a personal Bot only.** A Team Bot shares access to its plugins and secrets across the team.
+A Home Assistant token there can give teammates and connected Slack conversations access to your home.
 
 1. In the personal Bot, add a custom MCP server of type **Remote HTTPS**.
 2. URL: `https://<external-host>/api/mcp/assist`.
@@ -136,23 +139,19 @@ Team Bot gives every teammate and every Slack channel the Bot is in access to yo
    - **OAuth.** Home Assistant uses IndieAuth-style client IDs. The client ID is the client's own base URL.
      Home Assistant requires the OAuth `redirect_uri` to have the same scheme and domain as that client ID.
      Home Assistant does **not** support RFC 7591 Dynamic Client Registration.
-     If Grok requires dynamic registration, OAuth will fail. Use the bearer route instead.
+     If Grok requires dynamic registration, this OAuth route will fail. Use the bearer route only if
+     the client can take its value from a secret; otherwise stop.
      Copy any client ID or callback only from the actual Grok UI. Do not guess them.
 4. Ask the Bot to list the Home Assistant tools. Then go to [Check the connection](#5-check-the-connection).
 
 ### Current reported blocker
 
-Not verified here. On 17 and 25 September 2026, a Cursor staff reply in a
-[Cursor forum thread](https://forum.cursor.com/t/grok-bot-custom-mcp-oauth-fails-before-sign-in-redirect-uri-not-allowed/171877)
-reported the following about Grok Bot's custom MCP:
-
-- Grok Bot custom MCP connectors authenticate only through OAuth with Dynamic Client Registration.
-- There is no safe way to enter a secret header value.
-
-If this is still true, neither route works with Home Assistant today. OAuth fails because Home Assistant has
-no registration endpoint. Bearer fails because the token cannot be stored safely.
-Do not work around this by giving the token to the Bot in chat or in a tool call.
-Native Bot compatibility stays an open gate under `HA-004`.
+The [feasibility record](feasibility.md) preserves a September 2026 community report that custom MCP
+requires OAuth Dynamic Client Registration and lacks a safe secret-header field. It is not a primary
+xAI source or a test of this account. Treat it as a reason to check the actual client, not proof of current support.
+Home Assistant has no Dynamic Client Registration endpoint. If the client requires one and cannot use a
+secret-backed bearer header, neither route works. Do not give a token to the Bot in chat or a tool call.
+Native Bot compatibility stays open under `HA-004`.
 
 ## 5. Check the connection
 
