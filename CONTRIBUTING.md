@@ -25,3 +25,7 @@ The [hub contribution guide](https://github.com/adidshaft/grok-gadgets/blob/main
 Never add home-control calls to a diagnostic test without explicitly changing its scope. Do not include bearer tokens, household entity names, endpoint credentials or raw account logs. Do not infer Grok/mobile/hardware verification from a fixture or tool listing.
 
 Contributions use Apache-2.0 without an additional CLA or sign-off requirement. AI assistance does not transfer responsibility for code, sources or test claims. Follow the shared [governance](https://github.com/adidshaft/grok-gadgets/blob/main/GOVERNANCE.md) and [Code of Conduct](https://github.com/adidshaft/grok-gadgets/blob/main/CODE_OF_CONDUCT.md). Send private conduct reports to [adidshaft@kyokasuigetsu.xyz](mailto:adidshaft@kyokasuigetsu.xyz); vulnerabilities use [Security](SECURITY.md). No fictitious review team or independent-human test result is implied.
+
+## Ignore rules and publication privacy
+
+Keep `.gitignore` current whenever a new tool produces caches, build output, local device configurations, execution logs or credentials. Preserve reviewed sample configuration files and the hub's verified public simulator download. Check new patterns with `git check-ignore`, then review the staged file list before committing. Ignore rules do not remove tracked files or past history; never merge the private pre-publication history back into a public branch. Use the sanitized public checkout and a public or GitHub noreply commit email.

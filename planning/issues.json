@@ -15,7 +15,7 @@
     "milestone": "M0",
     "stage": "done",
     "commits": [
-      "46b63cd"
+      "ee9b89e"
     ],
     "evidence": "Foundation files reviewed; publication inactive"
   },
@@ -35,7 +35,7 @@
     "milestone": "M1",
     "stage": "done",
     "commits": [
-      "7f175c0"
+      "8f3848f"
     ],
     "evidence": "Official sources/date reviewed; all account/runtime gates explicitly open"
   },
@@ -59,7 +59,7 @@
     "milestone": "M6",
     "stage": "done",
     "commits": [
-      "d40882d"
+      "e85326e"
     ],
     "evidence": "13 unittest checks, including official SDK against loopback HTTP fixture endpoint; lint/format/package and clean wheel installation passed 2026-10-04. No real HA/Grok."
   },
@@ -111,11 +111,13 @@
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
     "commits": [
-      "fe2b93f52124ac199706f62708bb162751f087e2"
+      "66362e8976d696b1ae08e5cf1159423d2ba0dc94"
     ],
     "evidence": [
       "docs/verification/launch.md: fresh standalone frozen install,13tests,Ruff,build and installedwheel fixtureprobe pass; LICENSE/NOTICE inside wheel, Apache metadata. No real HA/Grok/device calls.",
-      "Clean documentation commit fe2b93f built with uv build --offline; actual wheel/sdist sizes, hashes, source and package license metadata recorded in planning/artifacts.json."
+      "Clean documentation commit 66362e8 built with uv build --offline; actual wheel/sdist sizes, hashes, source and package license metadata recorded in planning/artifacts.json.",
+      "Publication sanitization on 5 October 2026 preserves every incremental commit, date and message; private author email and machine paths removed, commit references remapped. .gitignore and contributor maintenance instructions cover local configuration, secrets, caches, logs and build outputs while retaining reviewed examples.",
+      "Sanitized publication checkout: 13 unittest cases and Ruff check/format pass on Python 3.11 arm64; git check-ignore confirms sensitive/output paths are excluded and reviewed example paths remain addable."
     ],
     "blocker": null
   },

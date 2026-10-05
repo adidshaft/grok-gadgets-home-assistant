@@ -5,3 +5,7 @@ Own only Home Assistant compatibility/client/recipes here. Reuse upstream MCP; e
 Use main and short feature branches, small tested commits referencing the local ledger. Keep issues current; migrate them to GitHub after authorized publication. Run `uv sync --frozen`, `uv run ruff check .`, `uv run ruff format --check .`, and `uv run python -m unittest discover -s tests -v`. Label fixtures honestly and keep tokens/private home state out of Git. Never infer Grok/hardware verification from MCP fixtures.
 
 Research subagents require Max reasoning; documentation-only tasks reuse the dated feasibility records unless research is explicitly assigned. Public cross-repository policy links use owner adidshaft; private fallback contact is adidshaft@kyokasuigetsu.xyz. Do not present planned reporting/CI/release channels as activated. Keep workflow edits with their assigned owner.
+
+## Ignore rules and publication privacy
+
+Keep `.gitignore` current whenever a new tool produces caches, build output, local device configurations, execution logs or credentials. Preserve reviewed sample configuration files and the hub's verified public simulator download. Check new patterns with `git check-ignore`, then review the staged file list before committing. Ignore rules do not remove tracked files or past history; never merge the private pre-publication history back into a public branch. Use the sanitized public checkout and a public or GitHub noreply commit email.
