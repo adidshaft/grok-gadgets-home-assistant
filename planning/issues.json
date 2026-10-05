@@ -252,5 +252,32 @@
       "Mutation check: bypassing GuardedTransport makes the redirect, pinning, compression and method tests fail"
     ],
     "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-007",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "CI tested only Python 3.11 although the package declares requires-python >=3.11",
+    "acceptance": [
+      "Checks run on Python 3.11, 3.12, 3.13 and 3.14 with fail-fast disabled",
+      "Action commit pins, read-only permissions, no persisted credentials, pinned uv and the timeout remain",
+      "The fixture probe runs in CI"
+    ],
+    "dependencies": [
+      "LAUNCH-CI-HA-001"
+    ],
+    "labels": [
+      "maintenance",
+      "home-assistant",
+      "P2"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      ".github/workflows/checks.yml",
+      "2026-10-05 local macOS run of the full workflow sequence with uv 0.12.3 on CPython 3.11.15, 3.12.13, 3.13.5 and 3.14.7: 26 tests OK on each. Hosted GitHub Actions run remains unverified until authorized push."
+    ],
+    "blocker": null
   }
 ]
