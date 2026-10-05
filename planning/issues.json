@@ -137,10 +137,274 @@
     ],
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "532b1d2"
+    ],
     "evidence": [
       ".github/workflows/checks.yml",
-      "Local YAML/pin/permission validation; runtime unchanged from fresh standalone docs acceptance"
+      "Local YAML/pin/permission validation; runtime unchanged from fresh standalone docs acceptance",
+      "Hosted PR #8 on 532b1d235b5c1e522814e37df2ecc3a2075500f4: required aggregate check and all four Python matrix checks passed. Matrix failures propagate to the aggregate."
+    ],
+    "blocker": null
+  },
+  {
+    "id": "HOSTING-DOCS-HA-001",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "Explain hosting ownership and current remote connection limits",
+    "acceptance": [
+      "Relevant entry points link the canonical hub hosting FAQ",
+      "Local software use needs no public hosting; gateway remote HTTPS/OAuth MCP remains unimplemented",
+      "Tunnel reachability is distinct from authentication, native Grok invocation, and physical evidence",
+      "Home Assistant upstream MCP remains separate from gateway remote transport work",
+      "Product hosting options remain proposals; no service or tunnel is activated"
+    ],
+    "dependencies": [],
+    "labels": [
+      "docs",
+      "home-assistant",
+      "P1"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "README.md",
+      "docs/setup.md",
+      "docs/feasibility.md",
+      "Documentation only. Runtime, protocol and workflows unchanged. HARD-GROK-REMOTE-001 remains an unimplemented engineering gate; no tunnel or service activated.",
+      "2026-10-05: uv sync --frozen, Ruff check/format and all 13 unittest cases passed. git diff --check passed. Fixtures and loopback transports only; no actual Home Assistant, Grok or device action."
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-003",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "--allow-local-http trusted *.local names without resolving them (review finding HA-03)",
+    "acceptance": [
+      "Plain-HTTP hostnames are resolved; every resolved address must be loopback, or with --allow-local-http RFC 1918, ULA or 100.64.0.0/10",
+      "Link-local, public, mixed and unresolvable answers are rejected",
+      "Every request connects to the validated address with the original Host header, so a later DNS answer cannot redirect the token",
+      "A one-line cleartext warning is printed for non-loopback HTTP"
+    ],
+    "dependencies": [],
+    "labels": [
+      "security",
+      "home-assistant",
+      "P2"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [
+      "0298b23"
+    ],
+    "evidence": [
+      "src/ha_probe/__init__.py validate_url, GuardedTransport",
+      "tests/test_probe.py test_http_names_are_resolved_and_every_address_checked, test_local_http_connects_only_to_the_checked_address, test_loopback_http_has_no_cleartext_warning",
+      "Mock resolver and mock/loopback transports only; no real LAN, mDNS or Home Assistant used"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-004",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "The probe read unbounded response bodies (review finding HA-04)",
+    "acceptance": [
+      "Responses over 4 MiB are refused by declared Content-Length or by streamed byte count",
+      "Compressed responses are refused and requests ask for identity encoding, so decompression cannot bypass the cap"
+    ],
+    "dependencies": [],
+    "labels": [
+      "security",
+      "home-assistant",
+      "P2"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [
+      "0298b23"
+    ],
+    "evidence": [
+      "src/ha_probe/__init__.py MAX_RESPONSE_BYTES, _CappedStream",
+      "tests/test_probe.py test_oversized_declared_response_is_refused, test_oversized_streamed_response_is_refused, test_compressed_response_is_refused",
+      "Mutation check: lifting the limit makes both size tests fail"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-006",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "Read-only and redirect guarantees depended on call sites and mcp library behaviour (review finding HA-06)",
+    "acceptance": [
+      "The probe talks to MCP only through a slotted facade exposing initialize and list_* methods",
+      "The transport refuses any JSON-RPC method other than discovery, batches, other origins and other HTTP methods before sending",
+      "Every redirect is refused by the probe itself: cross-origin, same-origin and http-to-https, with regression tests",
+      "CLI redirect failure stays generic, without token or location"
+    ],
+    "dependencies": [],
+    "labels": [
+      "security",
+      "home-assistant",
+      "P3"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [
+      "0298b23"
+    ],
+    "evidence": [
+      "src/ha_probe/__init__.py ReadOnlyDiscovery, GuardedTransport, DISCOVERY_METHODS",
+      "tests/test_probe.py test_read_only_facade_exposes_only_discovery, test_transport_refuses_actions_before_sending, test_redirects_are_never_followed, test_cross_origin_redirect_over_sockets_reaches_nobody, test_cli_redirect_failure_is_generic",
+      "Mutation check: bypassing GuardedTransport makes the redirect, pinning, compression and method tests fail"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-007",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "CI tested only Python 3.11 although the package declares requires-python >=3.11",
+    "acceptance": [
+      "Checks run on Python 3.11, 3.12, 3.13 and 3.14 with fail-fast disabled",
+      "Action commit pins, read-only permissions, no persisted credentials, pinned uv and the timeout remain",
+      "The fixture probe runs in CI"
+    ],
+    "dependencies": [
+      "LAUNCH-CI-HA-001"
+    ],
+    "labels": [
+      "maintenance",
+      "home-assistant",
+      "P2"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [
+      "c07e19e"
+    ],
+    "evidence": [
+      ".github/workflows/checks.yml",
+      "2026-10-05 local macOS run of the full workflow sequence with uv 0.12.3 on CPython 3.11.15, 3.12.13, 3.13.5 and 3.14.7: 26 tests OK on each. Hosted GitHub Actions run remains unverified until authorized push."
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-001",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "No concrete, safe recipe for a cloud Grok Bot to reach Home Assistant (review finding HA-01)",
+    "acceptance": [
+      "Remote route section: Option A Home Assistant Cloud URL; Option B Cloudflare Tunnel or reverse proxy with External URL equal to the public hostname and trusted proxies; never port-forward plain HTTP",
+      "ha-probe is run first against the same HTTPS URL",
+      "Grok Bot Remote HTTPS custom MCP at https://<external>/api/mcp/assist with a Bot-secret bearer header or OAuth; HA IndieAuth client IDs and no RFC 7591 registration are explained; DCR-only clients use the bearer route",
+      "Every Grok step is marked unverified and the reported September 2026 OAuth/DCR and secret-header blocker is stated"
+    ],
+    "dependencies": [
+      "HA-004"
+    ],
+    "labels": [
+      "docs",
+      "home-assistant",
+      "P1"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [
+      "943bd6b"
+    ],
+    "evidence": [
+      "docs/setup.md sections 4 and Current reported blocker; docs/feasibility.md 5 October update",
+      "Sources read 2026-10-05: home-assistant.io/integrations/mcp_server, home-assistant.io/integrations/http, docs.x.ai/grok-bot/team-bots, Grok Bot community support thread 171877",
+      "Documentation only. No tunnel, Home Assistant Cloud, Home Assistant or Grok Bot was used; the route is unverified and native compatibility stays blocked under HA-004"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-002",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "The recipe understated the token's scope and who can use it in a Bot (review finding HA-02)",
+    "acceptance": [
+      "A dedicated non-admin test user is mandatory",
+      "Control Home Assistant is turned off for the first read-only test and enabled only for the later control check",
+      "The long-lived token is described as a full user credential beyond exposed entities",
+      "Personal Bot only: a Team Bot secret gives every teammate and Slack channel access",
+      "Revoke the token after testing"
+    ],
+    "dependencies": [],
+    "labels": [
+      "docs",
+      "security",
+      "home-assistant",
+      "P1"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [
+      "943bd6b"
+    ],
+    "evidence": [
+      "docs/setup.md section 2 and What the token can do; SECURITY.md",
+      "Per-entity permission absence for non-admin users is stated from documentation and review, not checked on a live instance"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-005",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "The /api/mcp/<api_id> restriction was not documented as intentional (review finding HA-05)",
+    "acceptance": [
+      "Code and setup guide state that only /api/mcp and /api/mcp/assist are accepted because other LLM APIs require an administrator",
+      "A test rejects /api/mcp/custom_api"
+    ],
+    "dependencies": [],
+    "labels": [
+      "docs",
+      "home-assistant",
+      "P3"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [
+      "0298b23",
+      "943bd6b"
+    ],
+    "evidence": [
+      "src/ha_probe/__init__.py ALLOWED_PATHS",
+      "docs/setup.md Which URL paths the probe accepts",
+      "tests/test_probe.py test_only_assist_paths_are_allowed"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-008",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "The README did not say plainly what the project is or what works with Grok Bot today (review product lens)",
+    "acceptance": [
+      "First screen gives the Grok Bot purpose, current fixture-only verification, and the account-free quickstart",
+      "One setup recipe owns real-home and remote instructions; authentication support is checked before enabling exposure",
+      "The README retains zero-action scope and full-user token warning; the historical community report is not presented as verified platform support"
+    ],
+    "dependencies": [
+      "REVIEW-HA-001"
+    ],
+    "labels": [
+      "docs",
+      "home-assistant",
+      "P1"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "README.md, SUPPORT.md",
+      "Documentation only; fixture quickstart re-run 2026-10-05 with the documented commands",
+      "2026-10-05 finish review: shortened README and removed duplicate setup/security detail. docs/setup.md checks secret-backed bearer or compatible OAuth before remote exposure; bearer fallback is conditional, not a promised path. Full local check sequence passes: frozen install, Ruff lint/format, 26 tests, wheel/sdist and fixture probe (2 tools/1 resource/1 prompt; zero calls/reads; Grok/hardware false). No real Home Assistant, account, tunnel or paid service used."
     ],
     "blocker": null
   }
