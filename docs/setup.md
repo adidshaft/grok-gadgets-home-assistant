@@ -7,6 +7,12 @@ The fixture contains manually written MCP discovery data. It is not a capture fr
 The probe initializes the connection and lists tools, resources, and prompts.
 It does not execute tools, read resources, or change a light.
 
+Local fixture tests need no public hosting. For a real home, the Home Assistant operator
+runs the upstream MCP server. Grok/xAI hosts Grok Bot.
+The proposed cloud connection goes directly to Home Assistant. It does not use the Grok Gadgets gateway.
+See the [hosting FAQ](https://github.com/adidshaft/grok-gadgets/blob/main/docs/getting-started/hosting.md)
+for who hosts each process and who operates a tunnel.
+
 ## Prepare a real home
 
 **This procedure has not been performed here.** It is based on the [4 October 2026 feasibility record](feasibility.md).
@@ -20,7 +26,7 @@ These steps are separate from the account-free quickstart.
 5. Check that ordinary dashboard controls still work. Entity exposure does not restrict every Home Assistant API through token scopes.
 6. Create a dedicated test user without administrator access, if practical.
 7. Get its access token from the Home Assistant profile. Store it privately in `HA_TOKEN`. Do not use command arguments or committed configuration.
-8. Set `HA_MCP_URL` to the full endpoint on your machine, for example `http://homeassistant.local:8123/api/mcp/assist`.
+8. Set `HA_MCP_URL` to the full endpoint reachable by your probe, for example `http://homeassistant.local:8123/api/mcp/assist`.
 9. Run `uv run ha-probe`. For an authorized LAN HTTP test, add `--allow-local-http`.
 10. Check the evidence level, counts, and context-tool/resource availability in the output.
 
@@ -30,6 +36,8 @@ By default, the probe permits non-HTTPS connections only on loopback.
 `--allow-local-http` also permits private IP addresses and `.local` hostnames.
 It never permits a public HTTP endpoint. It does not change exposure or firewall settings.
 
+This LAN URL is for the local probe. Grok cloud cannot reach it directly.
+
 The probe hides household names and server descriptions. A 401 error indicates an authentication check is necessary.
 A 404 error suggests an integration or selected API mismatch. The CLI returns a generic error without exception text.
 
@@ -37,7 +45,7 @@ A 404 error suggests an integration or selected API mismatch. The CLI returns a 
 
 **Account access and network reachability remain pending.**
 Use the Bot's desktop plugin or custom-MCP setup, if available.
-The proposed connection uses remote HTTPS directly to the authorized Home Assistant endpoint.
+The proposed connection uses publicly reachable HTTPS directly to the authorized Home Assistant MCP endpoint.
 Do not put a Mac-local URL or path in a cloud Command configuration.
 Do not publish a personal Bot as a Team Bot only to follow Team Bots documentation.
 
@@ -50,6 +58,15 @@ Before you activate a connection, verify these requirements:
 
 Get the exact Grok settings and callback URI from the actual UI.
 Do not invent an OAuth identifier or a ready-to-import Grok configuration.
+
+If an authorized test uses a tunnel, the home operator configures it and keeps it running.
+The tunnel provider or operator controls that route. Grok is its client.
+A tunnel forwards requests. It does not add Home Assistant authentication.
+Keep the Home Assistant host running for this route.
+
+The gadget gateway's missing remote service is tracked under `HARD-GROK-REMOTE-001`.
+That work does not replace Home Assistant's existing MCP service.
+This route still needs its own authentication, reachability, and native Bot checks under `HA-004`.
 
 After account authorization, perform these checks:
 
@@ -78,7 +95,8 @@ Save a report outside Git. Remove private data. Include:
 - URL category: local or approved remote.
 - Each check and its result.
 
-Keep these evidence levels separate: fixture tested, Grok verified, hardware verified, and independently reproduced.
+Record local fixture acceptance, remote security, native Grok invocation, physical effects,
+and independent reproduction separately. A reachable URL does not prove any tool invocation.
 Fixture checks need no cloud dependency or subscription.
 
 ## Remove the experiment

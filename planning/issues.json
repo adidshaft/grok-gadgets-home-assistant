@@ -143,5 +143,35 @@
       "Local YAML/pin/permission validation; runtime unchanged from fresh standalone docs acceptance"
     ],
     "blocker": null
+  },
+  {
+    "id": "HOSTING-DOCS-HA-001",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "Explain hosting ownership and current remote connection limits",
+    "acceptance": [
+      "Relevant entry points link the canonical hub hosting FAQ",
+      "Local software use needs no public hosting; gateway remote HTTPS/OAuth MCP remains unimplemented",
+      "Tunnel reachability is distinct from authentication, native Grok invocation, and physical evidence",
+      "Home Assistant upstream MCP remains separate from gateway remote transport work",
+      "Product hosting options remain proposals; no service or tunnel is activated"
+    ],
+    "dependencies": [],
+    "labels": [
+      "docs",
+      "home-assistant",
+      "P1"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "README.md",
+      "docs/setup.md",
+      "docs/feasibility.md",
+      "Documentation only. Runtime, protocol and workflows unchanged. HARD-GROK-REMOTE-001 remains an unimplemented engineering gate; no tunnel or service activated.",
+      "2026-10-05: uv sync --frozen, Ruff check/format and all 13 unittest cases passed. git diff --check passed. Fixtures and loopback transports only; no actual Home Assistant, Grok or device action."
+    ],
+    "blocker": null
   }
 ]
