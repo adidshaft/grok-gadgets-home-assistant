@@ -6,7 +6,8 @@ concurrency:
   group: checks-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  home-assistant-checks:
+  home-assistant-checks-matrix:
+    name: home-assistant-checks (${{ matrix.python }})
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
@@ -26,3 +27,13 @@ jobs:
       - run: uv run python -m unittest discover -s tests -v
       - run: uv build
       - run: uv run ha-probe --fixture fixtures/assist.json
+  home-assistant-checks:
+    name: home-assistant-checks
+    if: always()
+    needs: home-assistant-checks-matrix
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require every Python version
+        env:
+          MATRIX_RESULT: ${{ needs.home-assistant-checks-matrix.result }}
+        run: test "$MATRIX_RESULT" = success
