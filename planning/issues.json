@@ -309,7 +309,9 @@
     ],
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "9b4c600"
+    ],
     "evidence": [
       "docs/setup.md sections 4 and Current reported blocker; docs/feasibility.md 5 October update",
       "Sources read 2026-10-05: home-assistant.io/integrations/mcp_server, home-assistant.io/integrations/http, docs.x.ai/grok-bot/team-bots, Grok Bot community support thread 171877",
@@ -338,7 +340,9 @@
     ],
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
-    "commits": [],
+    "commits": [
+      "9b4c600"
+    ],
     "evidence": [
       "docs/setup.md section 2 and What the token can do; SECURITY.md",
       "Per-entity permission absence for non-admin users is stated from documentation and review, not checked on a live instance"
@@ -363,12 +367,40 @@
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
     "commits": [
-      "ee6446e"
+      "ee6446e",
+      "9b4c600"
     ],
     "evidence": [
       "src/ha_probe/__init__.py ALLOWED_PATHS",
       "docs/setup.md Which URL paths the probe accepts",
       "tests/test_probe.py test_only_assist_paths_are_allowed"
+    ],
+    "blocker": null
+  },
+  {
+    "id": "REVIEW-HA-008",
+    "repository": "grok-gadgets-home-assistant",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "The README did not say plainly what the project is or what works with Grok Bot today (review product lens)",
+    "acceptance": [
+      "One-paragraph opening: Home Assistant already ships an MCP server; this repository adds a read-only check and a recipe, no second server",
+      "What works with Grok Bot today: the probe is tested with fixtures and local servers only; the remote HTTPS Grok route is documented but unverified, with the reported blocker linked",
+      "Three-step quickstart, then short details"
+    ],
+    "dependencies": [
+      "REVIEW-HA-001"
+    ],
+    "labels": [
+      "docs",
+      "home-assistant",
+      "P1"
+    ],
+    "milestone": "PUBLIC-ALPHA",
+    "stage": "done",
+    "commits": [],
+    "evidence": [
+      "README.md, SUPPORT.md",
+      "Documentation only; fixture quickstart re-run 2026-10-05 with the documented commands"
     ],
     "blocker": null
   }
