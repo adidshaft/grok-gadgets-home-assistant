@@ -1,6 +1,6 @@
 {
   "status": "clean committed local build; unpublished",
-  "source_commit": "66362e8976d696b1ae08e5cf1159423d2ba0dc94",
+  "source_commit": "c36f06e548ddcdfbf383665a97f15631b604abd1",
   "source_dirty": false,
   "build_command": "uv build --offline",
   "python": "3.11.15",

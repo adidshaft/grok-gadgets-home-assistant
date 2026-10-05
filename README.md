@@ -60,3 +60,7 @@ A cloud Grok Bot cannot launch a path on your computer. Its authentication, tran
 Use the [issue chooser](https://github.com/adidshaft/grok-gadgets-home-assistant/issues/new/choose) after repository activation, or the [local ledger](planning/issues.json) during preparation. Keep tokens and household names private; vulnerabilities use [Security](SECURITY.md). General discussion is at [r/GrokGadgets](https://www.reddit.com/r/GrokGadgets/) under the hub's [Code of Conduct](https://github.com/adidshaft/grok-gadgets/blob/main/CODE_OF_CONDUCT.md).
 
 Original code is [Apache-2.0](LICENSE), with attribution in [NOTICE](NOTICE). The package uses the official MCP SDK pinned by [uv.lock](uv.lock); package and dependency license metadata are described in [verification](docs/verification.md). This independent project is unaffiliated with xAI and Home Assistant. Public repositories, releases and reporting settings remain planned destinations until activated.
+
+## History note
+
+Pre-publication commit dates were reconstructed across 29 September–5 October 2026 at the owner’s request. Verification records retain their actual execution dates. See the [history and privacy record](https://github.com/adidshaft/grok-gadgets/blob/main/docs/verification/publication-sanitization.md).

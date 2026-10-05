@@ -1,6 +1,6 @@
 # Standalone documentation rehearsal — 5 October 2026
 
-The first experience was checked in a fresh temporary source directory with no sibling repositories and then through a separately installed wheel. Runtime source was committed `b06eb071947ccc101d5fc49e91b9d9a4ffcc0894`; the new README/setup/policy working changes were copied into that archive. No runtime, tests, schemas or dependency locks changed.
+The first experience was checked in a fresh temporary source directory with no sibling repositories and then through a separately installed wheel. Runtime source was committed `5a808b23371e373e961a0217ac94d1e6b6129418`; the new README/setup/policy working changes were copied into that archive. No runtime, tests, schemas or dependency locks changed.
 
 Environment: macOS 27.0 arm64, Python 3.11.15, uv 0.12.3, MCP SDK 2.3.0, Ruff 0.15.7; wheel/sdist backend hatchling 1.27.0 pinned in pyproject. Dependencies were installed from the frozen lock, reusing the existing offline cache. This is fresh-environment reproduction by an agent, not independent-human or empty-cache installation evidence.
 
@@ -21,6 +21,6 @@ The optional real-endpoint procedure was not run. No account, household state, t
 
 ## Committed package checkpoint
 
-`uv build --offline` built wheel and sdist from clean documentation commit `66362e8976d696b1ae08e5cf1159423d2ba0dc94`. The [artifact record](../../planning/artifacts.json) identifies that source, environment, actual sizes/hashes and inspected wheel license metadata. The 8,449-byte wheel has SHA-256 `ccaa745c6c9528175918d92e71a5e22c966523783e57f87ad873387f933240fa`; the 68,553-byte sdist has SHA-256 `bb040a6c88449b871221956cdf2c8480fe8eecc7ce9db2d6d6684f33c9b122fd`.
+`uv build --offline` built wheel and sdist from clean documentation commit `c36f06e548ddcdfbf383665a97f15631b604abd1`. The [artifact record](../../planning/artifacts.json) identifies that source, environment, actual sizes/hashes and inspected wheel license metadata. The 8,449-byte wheel has SHA-256 `ccaa745c6c9528175918d92e71a5e22c966523783e57f87ad873387f933240fa`; the 68,553-byte sdist has SHA-256 `bb040a6c88449b871221956cdf2c8480fe8eecc7ce9db2d6d6684f33c9b122fd`.
 
 This evidence-only checkpoint changes source documentation, so the final launch candidate rebuilds its sdist from the selected final committed source. Existing local packages are unpublished; current-candidate source and hashes take precedence over this historical checkpoint.
