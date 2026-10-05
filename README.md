@@ -16,7 +16,7 @@ The solid path is the software-only first step. The dotted path is the intended 
 
 ## Run the fixture first
 
-Get this repository's source and enter its root directory. The publication destination is [adidshaft/grok-gadgets-home-assistant](https://github.com/adidshaft/grok-gadgets-home-assistant); until activation, use a reviewed source archive supplied with the local candidate.
+Clone [adidshaft/grok-gadgets-home-assistant](https://github.com/adidshaft/grok-gadgets-home-assistant) and enter its root directory.
 
 Requirements: Python **3.11** and `uv`, with internet access for the initial locked dependency installation. No sibling checkout, Home Assistant instance, Grok account, token or device is needed. The recorded host is macOS arm64; Windows/Intel Mac and real-home installation are not verified.
 
@@ -57,9 +57,9 @@ The [gateway](https://github.com/adidshaft/grok-gadgets-gateway) serves the sepa
 
 A cloud Grok Bot cannot launch a path on your computer. Its authentication, transport, network reachability and inspectable invocation results must be checked on the actual supported client. The local probe does not establish OAuth compatibility, desktop/mobile parity, unsolicited event delivery, or a physical device effect. The [historical feasibility review](docs/feasibility.md) records the source/date and open experiments; it is not a freshly verified platform claim.
 
-Use the [issue chooser](https://github.com/adidshaft/grok-gadgets-home-assistant/issues/new/choose) after repository activation, or the [local ledger](planning/issues.json) during preparation. Keep tokens and household names private; vulnerabilities use [Security](SECURITY.md). General discussion is at [r/GrokGadgets](https://www.reddit.com/r/GrokGadgets/) under the hub's [Code of Conduct](https://github.com/adidshaft/grok-gadgets/blob/main/CODE_OF_CONDUCT.md).
+Use the [issue chooser](https://github.com/adidshaft/grok-gadgets-home-assistant/issues/new/choose). Keep tokens and household names private; vulnerabilities use [Security](SECURITY.md). General discussion is at [r/GrokGadgets](https://www.reddit.com/r/GrokGadgets/) under the hub's [Code of Conduct](https://github.com/adidshaft/grok-gadgets/blob/main/CODE_OF_CONDUCT.md).
 
-Original code is [Apache-2.0](LICENSE), with attribution in [NOTICE](NOTICE). The package uses the official MCP SDK pinned by [uv.lock](uv.lock); package and dependency license metadata are described in [verification](docs/verification.md). This independent project is unaffiliated with xAI and Home Assistant. Public repositories, releases and reporting settings remain planned destinations until activated.
+Original code is [Apache-2.0](LICENSE), with attribution in [NOTICE](NOTICE). The package uses the official MCP SDK pinned by [uv.lock](uv.lock); package and dependency license metadata are described in [verification](docs/verification.md). This independent project is unaffiliated with xAI and Home Assistant. Package releases remain pending; use the source installation above.
 
 ## History note
 
