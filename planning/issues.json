@@ -194,7 +194,7 @@
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
     "commits": [
-      "ee6446e"
+      "0298b23"
     ],
     "evidence": [
       "src/ha_probe/__init__.py validate_url, GuardedTransport",
@@ -221,7 +221,7 @@
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
     "commits": [
-      "ee6446e"
+      "0298b23"
     ],
     "evidence": [
       "src/ha_probe/__init__.py MAX_RESPONSE_BYTES, _CappedStream",
@@ -250,7 +250,7 @@
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
     "commits": [
-      "ee6446e"
+      "0298b23"
     ],
     "evidence": [
       "src/ha_probe/__init__.py ReadOnlyDiscovery, GuardedTransport, DISCOVERY_METHODS",
@@ -280,7 +280,7 @@
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
     "commits": [
-      "024d891"
+      "c07e19e"
     ],
     "evidence": [
       ".github/workflows/checks.yml",
@@ -310,7 +310,7 @@
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
     "commits": [
-      "9b4c600"
+      "943bd6b"
     ],
     "evidence": [
       "docs/setup.md sections 4 and Current reported blocker; docs/feasibility.md 5 October update",
@@ -341,7 +341,7 @@
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
     "commits": [
-      "9b4c600"
+      "943bd6b"
     ],
     "evidence": [
       "docs/setup.md section 2 and What the token can do; SECURITY.md",
@@ -367,8 +367,8 @@
     "milestone": "PUBLIC-ALPHA",
     "stage": "done",
     "commits": [
-      "ee6446e",
-      "9b4c600"
+      "0298b23",
+      "943bd6b"
     ],
     "evidence": [
       "src/ha_probe/__init__.py ALLOWED_PATHS",
