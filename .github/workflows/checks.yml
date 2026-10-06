@@ -29,6 +29,8 @@ jobs:
       - run: uv sync --frozen --python ${{ matrix.python }}
       - run: uv run ruff check .
       - run: uv run ruff format --check .
+      - name: Plain language (ASD-STE100 sentence limit)
+        run: python3 scripts/check_ste.py README.md
       - run: uv run python -m unittest discover -s tests -v
       - run: uv build
       - name: Package metadata renders on PyPI (nothing is uploaded)
