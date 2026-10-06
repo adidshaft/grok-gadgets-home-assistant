@@ -79,6 +79,7 @@ Share what your home exposes, ask questions and suggest ideas on
 Report bugs through the [issue chooser](https://github.com/adidshaft/grok-gadgets-home-assistant/issues/new/choose).
 New here? Pick a [good first issue](https://github.com/adidshaft/grok-gadgets-home-assistant/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 and read [CONTRIBUTING](CONTRIBUTING.md). Keep tokens and household names out of public posts.
+Contribute on the `dev` branch; `main` holds tagged stable releases ([branches](CONTRIBUTING.md#branches)).
 
 ## License and affiliation
 
