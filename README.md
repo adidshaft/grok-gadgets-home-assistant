@@ -1,27 +1,22 @@
 # Grok Gadgets: Home Assistant
 
-Check what Home Assistant can offer your existing **Grok Bot**. `ha-probe` lists the tools,
-resources, and prompts from Home Assistant's own MCP server. It never calls a tool or reads
-a resource. A [setup recipe](docs/setup.md) describes the unverified Bot connection.
-It is an experimental alpha and is not affiliated with xAI or Home Assistant.
-
-## What works with Grok Bot today
-
-**The probe works with fixtures and local test servers. Real Home Assistant and Grok Bot use remain unverified.**
-Bot setup needs compatible authentication and a reachable HTTPS URL. Check the
-[authentication gate](docs/setup.md#4-remote-route) before exposing a home server.
-This package adds no home-control tools or event-triggered Bot tasks.
+Check what Home Assistant's own MCP server would offer your Grok Bot. `ha-probe` lists its
+tools, resources and prompts without ever calling a tool or reading a resource. Experimental
+alpha: real homes and Grok Bot are not verified yet. See the
+[project status](https://grok-gadgets.pages.dev/doc-docs-public-support-matrix).
 
 ## Quickstart
 
-You need Python 3.11+ and [`uv`](https://docs.astral.sh/uv/). From this repository, run:
+You need Python 3.11+, Git and [`uv`](https://docs.astral.sh/uv/). No home, account or token.
 
 ```sh
+git clone https://github.com/adidshaft/grok-gadgets-home-assistant.git
+cd grok-gadgets-home-assistant
 uv sync --frozen
 uv run ha-probe --fixture fixtures/assist.json
 ```
 
-No home, account, or token is needed. Expected result (other fixed flags omitted):
+Expected result (other fixed flags omitted):
 
 ```json
 {
@@ -36,8 +31,16 @@ No home, account, or token is needed. Expected result (other fixed flags omitted
 }
 ```
 
-Next, [prepare a Home Assistant test user and run discovery](docs/setup.md#2-prepare-home-assistant-safely).
-That guide keeps _Control Home Assistant_ off for the first test and explains HTTPS, token scope, and cleanup.
+Next: [prepare a Home Assistant test user](docs/setup.md#2-prepare-home-assistant-safely).
+
+## What works with Grok Bot today
+
+**The probe works with fixtures and local test servers. Real Home Assistant and Grok Bot use remain unverified.**
+Bot setup needs compatible authentication and a reachable HTTPS URL. Check the
+[authentication gate](docs/setup.md#4-remote-route) before exposing a home server.
+This package adds no home-control tools or event-triggered Bot tasks.
+
+The [setup guide](docs/setup.md#2-prepare-home-assistant-safely) keeps _Control Home Assistant_ off for the first test and explains HTTPS, token scope, and cleanup.
 **A Home Assistant token is a full user credential.** Never paste it into chat or an issue. Revoke it after testing.
 
 ## Details
