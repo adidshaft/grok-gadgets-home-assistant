@@ -1,5 +1,10 @@
 name: Checks
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '53 5 * * *'
+  workflow_dispatch:
 permissions:
   contents: read
 concurrency:
@@ -26,7 +31,8 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run python -m unittest discover -s tests -v
       - run: uv build
-      - run: uv run ha-probe --fixture fixtures/assist.json
+      - name: README Quickstart and its documented output
+        run: python3 scripts/check_readme.py
   home-assistant-checks:
     name: home-assistant-checks
     if: always()
