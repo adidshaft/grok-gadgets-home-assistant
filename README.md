@@ -55,8 +55,7 @@ and revoke it after testing.
 
 Connecting a Grok Bot needs a reachable HTTPS URL with compatible authentication; check the
 [remote-route gate](docs/setup.md#4-remote-route) before you expose a home server. This
-package adds no home-control tools and no event-triggered Bot tasks. Native Bot
-compatibility is tracked as `HA-004`; see also the
+package adds no home-control tools and no event-triggered Bot tasks. Issue `HA-004` tracks native Bot compatibility; see also the
 [hosting FAQ](https://github.com/adidshaft/grok-gadgets/blob/main/docs/getting-started/hosting.md).
 
 ## Learn more
@@ -83,9 +82,7 @@ Contribute on the `dev` branch; `main` holds tagged stable releases ([branches](
 
 ## License and affiliation
 
-Apache-2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE). Dependencies are pinned by
-[uv.lock](uv.lock); packages are not on PyPI yet. Grok Gadgets is an independent open-source
+Apache-2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE). [uv.lock](uv.lock) pins the dependencies; the packages are not on PyPI yet. Grok Gadgets is an independent open-source
 project. It is **not affiliated with, endorsed by or sponsored by SpaceXAI or xAI**, which
-make Grok and Grok Bot, nor with Home Assistant. Pre-publication commit dates were
-reconstructed; see the
+make Grok and Grok Bot, nor with Home Assistant. We reconstructed the pre-publication commit dates; see the
 [history record](https://github.com/adidshaft/grok-gadgets/blob/main/docs/verification/publication-sanitization.md).
