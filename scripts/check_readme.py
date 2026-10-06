@@ -18,6 +18,10 @@ def main():
     readme = (ROOT / "README.md").read_text()
     section = readme.split("## Quickstart", 1)[1].split("\n## ", 1)[0]
     commands = re.search(r"```sh\n(.*?)```", section, re.S)[1]
+    # This checkout is the clone: skip the README's clone and cd lines.
+    commands = "\n".join(
+        line for line in commands.splitlines() if not line.startswith(("git clone", "cd "))
+    )
     expected = json.loads(re.search(r"```json\n(.*?)```", section, re.S)[1])
     output = subprocess.run(
         ["bash", "-euo", "pipefail", "-c", commands],
