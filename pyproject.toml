@@ -4,8 +4,28 @@ version = "0.1.0a1"
 description = "Read-only Home Assistant MCP compatibility diagnostics for Grok Gadgets"
 requires-python = ">=3.11"
 license = "Apache-2.0"
+readme = "README.md"
+authors = [{ name = "adidshaft" }]
+keywords = ["mcp", "grok", "home-assistant", "diagnostics"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Home Automation",
+]
 dependencies = ["mcp==2.3.0"]
 
+
+[project.urls]
+Homepage = "https://grok-gadgets.pages.dev/"
+Source = "https://github.com/adidshaft/grok-gadgets-home-assistant"
+Issues = "https://github.com/adidshaft/grok-gadgets-home-assistant/issues"
+Changelog = "https://github.com/adidshaft/grok-gadgets-home-assistant/blob/main/CHANGELOG.md"
 [project.scripts]
 ha-probe = "ha_probe:main"
 
