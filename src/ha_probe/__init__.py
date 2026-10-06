@@ -10,6 +10,7 @@ import socket
 import sys
 from pathlib import Path
 from urllib.parse import urlsplit
+from importlib.metadata import version
 
 import httpx2
 from mcp import ClientSession
@@ -274,6 +275,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--fixture", type=Path, help="Hand-authored discovery fixture; no network")
     parser.add_argument("--allow-local-http", action="store_true")
+    parser.add_argument(
+        "--version", action="version", version=version("grok-gadgets-home-assistant")
+    )
     args = parser.parse_args()
     # Third-party exception logs may include URLs/response bodies; never disclose them here.
     logging.disable(logging.CRITICAL)

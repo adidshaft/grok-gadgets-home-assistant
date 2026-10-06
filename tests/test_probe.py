@@ -90,6 +90,18 @@ def redirector(location_for):
 
 
 class DiscoveryTests(unittest.TestCase):
+    
+    def test_version_flag(self):
+        output = io.StringIO()
+        with (
+            patch("sys.argv", ["ha-probe", "--version"]),
+            contextlib.redirect_stdout(output),
+        ):
+            with self.assertRaises(SystemExit) as exc:
+                main()
+        self.assertEqual(exc.exception.code, 0)
+        self.assertIn("0.", output.getvalue())
+
     def test_fixture_is_honest_and_redacted(self):
         private = copy.deepcopy(FIXTURE)
         private["tools"]["tools"][0]["description"] = "SECRET private home"
