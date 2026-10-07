@@ -2,12 +2,12 @@
 
 **Nothing in this guide has been performed against a real Home Assistant installation or a real Grok Bot.**
 It is based on the current [Home Assistant MCP Server documentation](https://www.home-assistant.io/integrations/mcp_server/)
-and the [xAI Team Bots documentation](https://docs.x.ai/grok-bot/team-bots), both read on 5 October 2026,
+and the [Grok Bot Team Bots documentation](https://docs.x.ai/grok-bot/team-bots), both read on 5 October 2026,
 and on the [4 October 2026 feasibility record](feasibility.md). Every Grok step is unverified.
 
 The route goes directly from Grok Bot to Home Assistant's own MCP server. It does not use the
 Grok Gadgets gateway or a second server. The Home Assistant operator runs the server and any tunnel.
-Grok/xAI hosts Grok Bot. See the [hosting FAQ](https://github.com/adidshaft/grok-gadgets/blob/main/docs/getting-started/hosting.md).
+SpaceXAI hosts Grok Bot. See the [hosting FAQ](https://github.com/adidshaft/grok-gadgets/blob/main/docs/getting-started/hosting.md).
 
 ## 1. Run the local fixture first
 
@@ -23,7 +23,7 @@ lists tools, resources, and prompts. It cannot execute tools, read resources, or
    Use it only for this test.
 3. In Settings → Devices & services, add **Model Context Protocol Server** and select **Assist**.
 4. **Turn off _Control Home Assistant_** in the integration options for the first test.
-   Then MCP clients can read exposed entities but cannot control them.
+   Then Grok Bot can read exposed entities but cannot control them.
 5. On the exposed-entities page, expose only the selected test entities.
 6. Sign in as the test user. In Profile → Security, create a long-lived access token.
    Store it only in your shell environment as `HA_TOKEN` (for example `read -rs HA_TOKEN; export HA_TOKEN`).
@@ -148,7 +148,7 @@ A Home Assistant token there can give teammates and connected Slack conversation
 
 The [feasibility record](feasibility.md) preserves a September 2026 community report that custom MCP
 requires OAuth Dynamic Client Registration and lacks a safe secret-header field. It is not a primary
-xAI source or a test of this account. Treat it as a reason to check the actual client, not proof of current support.
+Grok Bot documentation or a test of this account. Treat it as a reason to check the actual client, not proof of current support.
 Home Assistant has no Dynamic Client Registration endpoint. If the client requires one and cannot use a
 secret-backed bearer header, neither route works. Do not give a token to the Bot in chat or a tool call.
 Native Bot compatibility stays open under `HA-004`.
