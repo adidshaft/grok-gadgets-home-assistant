@@ -317,7 +317,7 @@
     ],
     "evidence": [
       "docs/setup.md sections 4 and Current reported blocker; docs/feasibility.md 5 October update",
-      "Sources read 2026-10-05: home-assistant.io/integrations/mcp_server, home-assistant.io/integrations/http, docs.x.ai/grok-bot/team-bots, Cursor forum thread 171877",
+      "Sources read 2026-10-05: home-assistant.io/integrations/mcp_server, home-assistant.io/integrations/http, docs.x.ai/grok-bot/team-bots, Grok Bot community support thread 171877",
       "Documentation only. No tunnel, Home Assistant Cloud, Home Assistant or Grok Bot was used; the route is unverified and native compatibility stays blocked under HA-004"
     ],
     "blocker": null

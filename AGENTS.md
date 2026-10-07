@@ -4,7 +4,9 @@ Own only Home Assistant compatibility/client/recipes here. Reuse upstream MCP; e
 
 Use main and short feature branches, small tested commits referencing the local ledger. Keep issues current; migrate them to GitHub after authorized publication. Run `uv sync --frozen`, `uv run ruff check .`, `uv run ruff format --check .`, and `uv run python -m unittest discover -s tests -v`. Label fixtures honestly and keep tokens/private home state out of Git. Never infer Grok/hardware verification from MCP fixtures.
 
-Research subagents require Max reasoning; documentation-only tasks reuse the dated feasibility records unless research is explicitly assigned. Public cross-repository policy links use owner adidshaft; private fallback contact is adidshaft@kyokasuigetsu.xyz. Do not present planned reporting/CI/release channels as activated. Keep workflow edits with their assigned owner.
+Research tasks use the strongest available reasoning and cite primary sources; documentation-only tasks reuse the dated feasibility records unless research is explicitly assigned. Public cross-repository policy links use owner adidshaft; private fallback contact is adidshaft@kyokasuigetsu.xyz. Do not present planned reporting/CI/release channels as activated. Keep workflow edits with their assigned owner.
+
+**Grok Bot only.** The product, its docs, website, examples, tests, commits and branch names describe Grok Bot and SpaceXAI technology as the only assistant platform. Do not name, recommend or credit other AI assistants, models, chat products, coding agents or editors anywhere in the repository. Development tooling stays out of the record.
 
 ## Ignore rules and publication privacy
 
