@@ -4,7 +4,7 @@ Check what Home Assistant's own MCP server would offer your Grok Bot. `ha-probe`
 tools, resources and prompts without ever calling a tool or reading a resource. Experimental
 alpha: real homes and Grok Bot are not verified yet. See the
 [project status](https://grok-gadgets.pages.dev/doc-docs-public-support-matrix).
-Independent project, not affiliated with SpaceXAI, xAI or Home Assistant.
+Independent project, not affiliated with SpaceXAI or Home Assistant.
 
 ## Quickstart
 
@@ -83,6 +83,6 @@ Contribute on the `dev` branch; `main` holds tagged stable releases ([branches](
 ## License and affiliation
 
 Apache-2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE). [uv.lock](uv.lock) pins the dependencies; the packages are not on PyPI yet. Grok Gadgets is an independent open-source
-project. It is **not affiliated with, endorsed by or sponsored by SpaceXAI or xAI**, which
+project. It is **not affiliated with, endorsed by or sponsored by SpaceXAI**, which
 make Grok and Grok Bot, nor with Home Assistant. We reconstructed the pre-publication commit dates; see the
 [history record](https://github.com/adidshaft/grok-gadgets/blob/main/docs/verification/publication-sanitization.md).
