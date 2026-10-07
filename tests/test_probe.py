@@ -90,7 +90,6 @@ def redirector(location_for):
 
 
 class DiscoveryTests(unittest.TestCase):
-    
     def test_version_flag(self):
         output = io.StringIO()
         with (
