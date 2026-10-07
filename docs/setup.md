@@ -23,7 +23,7 @@ lists tools, resources, and prompts. It cannot execute tools, read resources, or
    Use it only for this test.
 3. In Settings → Devices & services, add **Model Context Protocol Server** and select **Assist**.
 4. **Turn off _Control Home Assistant_** in the integration options for the first test.
-   Then MCP clients can read exposed entities but cannot control them.
+   Then Grok Bot can read exposed entities but cannot control them.
 5. On the exposed-entities page, expose only the selected test entities.
 6. Sign in as the test user. In Profile → Security, create a long-lived access token.
    Store it only in your shell environment as `HA_TOKEN` (for example `read -rs HA_TOKEN; export HA_TOKEN`).
