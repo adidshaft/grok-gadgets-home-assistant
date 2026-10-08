@@ -1,6 +1,6 @@
 [project]
 name = "grok-gadgets-home-assistant"
-version = "0.1.0a2"
+version = "0.1.0a3"
 description = "Read-only Home Assistant MCP compatibility diagnostics for Grok Gadgets"
 requires-python = ">=3.11"
 license = "Apache-2.0"
