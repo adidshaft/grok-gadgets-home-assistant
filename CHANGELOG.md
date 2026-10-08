@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.1.0-alpha.3 — 8 October 2026
+
+- Dependabot opens weekly grouped update PRs into `dev`.
+- CONTRIBUTING starts fork branches from `upstream/dev`. CI also runs the plain-language check on CONTRIBUTING and SUPPORT.
+
 ## 0.1.0-alpha.2 — 7 October 2026
 
 - Include the contributor `ha-probe --version` option from PR #30.

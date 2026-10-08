@@ -10,7 +10,16 @@ The [hub contribution guide](https://github.com/adidshaft/grok-gadgets/blob/main
 ## Work from one checkout
 
 1. Choose a [tracked issue](https://github.com/adidshaft/grok-gadgets-home-assistant/issues), or discuss a significant feature/interface change first. Typo fixes need no preliminary issue. Include a [local ID](planning/issues.json) if the issue has one.
-2. Fork the repository. Clone your fork. Create a short-lived branch, for example `git switch dev && git switch -c docs/HA-123-clarify-fixture`.
+2. Fork the repository and clone your fork. A fork can hold only `main`, so start a short-lived branch from the upstream `dev`:
+
+   ```sh
+   git clone https://github.com/YOUR_ACCOUNT/grok-gadgets-home-assistant.git
+   cd grok-gadgets-home-assistant
+   git remote add upstream https://github.com/adidshaft/grok-gadgets-home-assistant.git
+   git fetch upstream dev
+   git switch -c docs/HA-123-clarify-fixture upstream/dev
+   ```
+
 3. From the repository root, install and check the locked Python 3.11 environment:
 
    ```sh
@@ -23,7 +32,7 @@ The [hub contribution guide](https://github.com/adidshaft/grok-gadgets/blob/main
    ```
 
 4. Add a test for changed probe behavior. Use manually written fixtures or a local fake endpoint. Fixture output is not a real-home result. For documentation changes, run the edited commands and check links. Record source dates for upstream integration claims.
-5. Open a focused PR and link its issue. Include expected and actual behavior, check commands, results, and updated guides. State what remains unverified. Respond to review with small commits. The maintainer squash-merges tested changes into `dev`. Code, documentation, and tests receive contribution credit.
+5. Push the branch to your fork and open a focused PR into `adidshaft/grok-gadgets-home-assistant` `dev`. The GitHub PR form selects `main` by default. Change the base branch to `dev`, because the PR-target check rejects other PRs into `main`. Link its issue. Include expected and actual behavior, check commands, results, and updated guides. State what remains unverified. Respond to review with small commits. The maintainer squash-merges tested changes into `dev`. Code, documentation, and tests receive contribution credit.
 
 Never add home-control calls to a diagnostic test without explicitly changing its scope. Do not include bearer tokens, household entity names, endpoint credentials or raw account logs. Do not infer Grok/mobile/hardware verification from a fixture or tool listing.
 
