@@ -8,15 +8,20 @@ import logging
 import os
 import socket
 import sys
+from importlib.metadata import version
 from pathlib import Path
 from urllib.parse import urlsplit
-from importlib.metadata import version
 
 import httpx2
 from mcp import ClientSession
 from mcp.client.streamable_http import streamable_http_client
-from mcp_types import InitializeResult, ListPromptsResult, ListResourcesResult, ListToolsResult
-from mcp_types import PaginatedRequestParams
+from mcp_types import (
+    InitializeResult,
+    ListPromptsResult,
+    ListResourcesResult,
+    ListToolsResult,
+    PaginatedRequestParams,
+)
 
 CONTEXT_URI = "homeassistant://assist/context-snapshot"
 MAX_PAGES = 10
@@ -244,31 +249,33 @@ async def probe(
         raise ValueError("HA_TOKEN must be set without newlines")
     if pinned is not None and _classify(pinned) != "loopback":
         print(CLEARTEXT_WARNING, file=sys.stderr)
-    async with httpx2.AsyncClient(
-        headers={"Authorization": f"Bearer {token}", "Accept-Encoding": "identity"},
-        timeout=10,
-        follow_redirects=False,
-        trust_env=False,
-        transport=GuardedTransport(url, pinned, transport),
-    ) as http:
-        async with streamable_http_client(url, http_client=http) as (read, write):
-            async with ClientSession(read, write, read_timeout_seconds=10) as raw_session:
-                session = ReadOnlyDiscovery(raw_session)
-                initialized = await session.initialize()
-                caps = initialized.capabilities
-                discovery = {
-                    "initialize": initialized.model_dump(mode="json", by_alias=True),
-                    "tools": await collect_pages(session.list_tools, "tools")
-                    if caps.tools is not None
-                    else {"tools": []},
-                    "resources": await collect_pages(session.list_resources, "resources")
-                    if caps.resources is not None
-                    else {"resources": []},
-                    "prompts": await collect_pages(session.list_prompts, "prompts")
-                    if caps.prompts is not None
-                    else {"prompts": []},
-                }
-                return summarize(discovery, "MCP endpoint discovered")
+    async with (
+        httpx2.AsyncClient(
+            headers={"Authorization": f"Bearer {token}", "Accept-Encoding": "identity"},
+            timeout=10,
+            follow_redirects=False,
+            trust_env=False,
+            transport=GuardedTransport(url, pinned, transport),
+        ) as http,
+        streamable_http_client(url, http_client=http) as (read, write),
+        ClientSession(read, write, read_timeout_seconds=10) as raw_session,
+    ):
+        session = ReadOnlyDiscovery(raw_session)
+        initialized = await session.initialize()
+        caps = initialized.capabilities
+        discovery = {
+            "initialize": initialized.model_dump(mode="json", by_alias=True),
+            "tools": await collect_pages(session.list_tools, "tools")
+            if caps.tools is not None
+            else {"tools": []},
+            "resources": await collect_pages(session.list_resources, "resources")
+            if caps.resources is not None
+            else {"resources": []},
+            "prompts": await collect_pages(session.list_prompts, "prompts")
+            if caps.prompts is not None
+            else {"prompts": []},
+        }
+        return summarize(discovery, "MCP endpoint discovered")
 
 
 def main() -> int:
@@ -292,7 +299,7 @@ def main() -> int:
                     allow_local_http=args.allow_local_http,
                 )
             )
-    except Exception:
+    except Exception:  # noqa: BLE001 - one generic message; never echo private details
         print(
             "Probe failed. Check URL, authentication, integration and reachability privately.",
             file=sys.stderr,

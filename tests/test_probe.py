@@ -11,6 +11,8 @@ from threading import Thread
 from unittest.mock import patch
 
 import httpx2
+from mcp_types import ListToolsResult
+
 from ha_probe import (
     CLEARTEXT_WARNING,
     MAX_RESPONSE_BYTES,
@@ -23,7 +25,6 @@ from ha_probe import (
     summarize,
     validate_url,
 )
-from mcp_types import ListToolsResult
 
 FIXTURE = json.loads((Path(__file__).parents[1] / "fixtures/assist.json").read_text())
 RESULTS = {
@@ -95,9 +96,9 @@ class DiscoveryTests(unittest.TestCase):
         with (
             patch("sys.argv", ["ha-probe", "--version"]),
             contextlib.redirect_stdout(output),
+            self.assertRaises(SystemExit) as exc,
         ):
-            with self.assertRaises(SystemExit) as exc:
-                main()
+            main()
         self.assertEqual(exc.exception.code, 0)
         self.assertIn("0.", output.getvalue())
 
@@ -250,7 +251,7 @@ class TransportTests(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(all(token == "Bearer test-secret" for token in tokens))
 
     async def test_unauthorized_endpoint_is_failure(self):
-        with self.assertRaises(Exception):
+        with self.assertRaises(Exception):  # noqa: B017 - the probe must refuse; any failure counts
             await probe(
                 "https://ha.example/api/mcp",
                 "revoked",
@@ -258,7 +259,7 @@ class TransportTests(unittest.IsolatedAsyncioTestCase):
             )
 
     async def test_missing_endpoint_is_failure(self):
-        with self.assertRaises(Exception):
+        with self.assertRaises(Exception):  # noqa: B017 - the probe must refuse; any failure counts
             await probe(
                 "https://ha.example/api/mcp",
                 "test-secret",
@@ -349,7 +350,7 @@ class GuardTests(unittest.IsolatedAsyncioTestCase):
                 return httpx2.Response(307, headers={"Location": location})
 
             with self.subTest(name=name):
-                with self.assertRaises(Exception):
+                with self.assertRaises(Exception):  # noqa: B017 - the probe must refuse; any failure counts
                     await probe(
                         url,
                         "test-secret",
@@ -377,7 +378,7 @@ class GuardTests(unittest.IsolatedAsyncioTestCase):
             redirector(lambda _port: f"http://127.0.0.1:{victim.server_port}/api/mcp")
         )
         try:
-            with self.assertRaises(Exception):
+            with self.assertRaises(Exception):  # noqa: B017 - the probe must refuse; any failure counts
                 await probe(f"http://127.0.0.1:{source.server_port}/api/mcp", "test-secret")
             self.assertEqual(victim_requests, [])
         finally:
@@ -386,7 +387,7 @@ class GuardTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_oversized_declared_response_is_refused(self):
         transport = httpx2.MockTransport(fixture_handler([], pad=MAX_RESPONSE_BYTES))
-        with self.assertRaises(Exception):
+        with self.assertRaises(Exception):  # noqa: B017 - the probe must refuse; any failure counts
             await probe("https://ha.example/api/mcp", "test-secret", transport=transport)
         report = await probe(
             "https://ha.example/api/mcp",
@@ -424,14 +425,14 @@ class GuardTests(unittest.IsolatedAsyncioTestCase):
 
         server, thread = serve(Chunked)
         try:
-            with self.assertRaises(Exception):
+            with self.assertRaises(Exception):  # noqa: B017 - the probe must refuse; any failure counts
                 await probe(f"http://127.0.0.1:{server.server_port}/api/mcp", "test-secret")
         finally:
             await stop(server, thread)
 
     async def test_compressed_response_is_refused(self):
         seen = []
-        with self.assertRaises(Exception):
+        with self.assertRaises(Exception):  # noqa: B017 - the probe must refuse; any failure counts
             await probe(
                 "https://ha.example/api/mcp",
                 "test-secret",
