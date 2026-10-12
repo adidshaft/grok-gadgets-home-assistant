@@ -36,6 +36,19 @@ Expected result (other fixed flags omitted):
 
 Next: [prepare a Home Assistant test user](docs/setup.md#2-prepare-home-assistant-safely).
 
+### Install with pip
+
+The package is not on PyPI yet. Each [GitHub release](https://github.com/adidshaft/grok-gadgets-home-assistant/releases)
+has a wheel and `SHA256SUMS`. Install the wheel into a virtual environment with Python 3.11+:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install https://github.com/adidshaft/grok-gadgets-home-assistant/releases/download/v0.1.0-alpha.4/grok_gadgets_home_assistant-0.1.0a4-py3-none-any.whl
+.venv/bin/ha-probe --help
+```
+
+On an Intel Mac, `cryptography` has no prebuilt wheel and needs a Rust toolchain to build.
+
 ## Why a probe
 
 Home Assistant already has its own MCP server, so Grok Gadgets does not wrap your home. The

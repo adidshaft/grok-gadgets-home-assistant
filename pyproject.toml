@@ -22,7 +22,7 @@ dependencies = ["mcp==2.3.0"]
 
 
 [project.urls]
-Homepage = "https://grok-gadgets.pages.dev/"
+Homepage = "https://grokgadgets.org/"
 Source = "https://github.com/adidshaft/grok-gadgets-home-assistant"
 Issues = "https://github.com/adidshaft/grok-gadgets-home-assistant/issues"
 Changelog = "https://github.com/adidshaft/grok-gadgets-home-assistant/blob/main/CHANGELOG.md"
