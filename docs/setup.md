@@ -1,13 +1,12 @@
 # Home Assistant setup recipe
 
-**Nothing in this guide has been performed against a real Home Assistant installation or a real Grok Bot.**
-It is based on the current [Home Assistant MCP Server documentation](https://www.home-assistant.io/integrations/mcp_server/)
-and the [Grok Bot Team Bots documentation](https://docs.x.ai/grok-bot/team-bots), both read on 5 October 2026,
-and on the [4 October 2026 feasibility record](feasibility.md). Every Grok step is unverified.
+This guide has no test result from a real Home Assistant installation or Grok Bot.
+Sources are the [Home Assistant MCP Server documentation](https://www.home-assistant.io/integrations/mcp_server/) and [Grok Bot Team Bots documentation](https://docs.x.ai/grok-bot/team-bots).
+The review date was 5 October 2026. See also the [4 October feasibility record](feasibility.md). Every Grok Bot step remains unverified.
 
 The route goes directly from Grok Bot to Home Assistant's own MCP server. It does not use the
 Grok Gadgets gateway or a second server. The Home Assistant operator runs the server and any tunnel.
-SpaceXAI hosts Grok Bot. See the [hosting FAQ](https://github.com/adidshaft/grok-gadgets/blob/main/docs/getting-started/hosting.md).
+SpaceXSI hosts Grok Bot. See the [hosting FAQ](https://github.com/adidshaft/grok-gadgets/blob/main/docs/getting-started/hosting.md).
 
 ## 1. Run the local fixture first
 
@@ -35,8 +34,7 @@ A long-lived access token is a **full credential for that user**, not an MCP-onl
 It works with Home Assistant's REST and WebSocket APIs too.
 Entity exposure and _Control Home Assistant_ limit only what the MCP Assist tools offer.
 They do not limit what someone with the token can do through the other APIs.
-Home Assistant has no per-entity permissions for non-admin users in its UI, so expect the token to reach
-everything the test user can reach in the dashboard. A non-admin user reduces the damage. It does not remove it.
+Home Assistant has no per-entity permissions for non-admin users in its UI. Expect the token to reach everything available to that test user. A non-admin user reduces the damage. It does not remove it.
 
 Revoke the token (Profile → Security) as soon as the test ends.
 
@@ -84,8 +82,7 @@ If the account lacks both, stop: an HTTPS URL or tunnel cannot solve that mismat
 See [Current reported blocker](#current-reported-blocker) and keep `HA-004` open until an actual account test passes.
 
 A cloud Grok Bot needs a public **HTTPS** URL for Home Assistant. Pick one option.
-**Never port-forward Home Assistant's plain-HTTP port (80 or 8123) to the internet.**
-Either option exposes the whole Home Assistant login and API on the internet, not only MCP.
+Never forward Home Assistant's plain-HTTP port (80 or 8123) to the internet. Either option exposes the whole Home Assistant login and API, including more than MCP.
 Keep Home Assistant updated and use strong passwords with multi-factor authentication for every user.
 
 ### Option A: Home Assistant Cloud (recommended by Home Assistant)

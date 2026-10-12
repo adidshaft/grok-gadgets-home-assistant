@@ -2,9 +2,11 @@
 
 Check what Home Assistant's own MCP server would offer your Grok Bot. `ha-probe` lists its
 tools, resources and prompts without ever calling a tool or reading a resource. Experimental
-alpha: real homes and Grok Bot are not verified yet. See the
+alpha: this Home Assistant integration has no verified real-home or Grok Bot result yet. See the
 [project status](https://grok-gadgets.pages.dev/doc-docs-public-support-matrix).
-Independent project, not affiliated with SpaceXAI or Home Assistant.
+Independent project, not affiliated with SpaceXSI or Home Assistant.
+
+> Writing style: ASD-STE100-inspired English. Use short sentences, active verbs and one instruction per step. This is not certified compliance.
 
 ## Quickstart
 
@@ -33,6 +35,19 @@ Expected result (other fixed flags omitted):
 ```
 
 Next: [prepare a Home Assistant test user](docs/setup.md#2-prepare-home-assistant-safely).
+
+### Install with pip
+
+The package is not on PyPI yet. Each [GitHub release](https://github.com/adidshaft/grok-gadgets-home-assistant/releases)
+has a wheel and `SHA256SUMS`. Install the wheel into a virtual environment with Python 3.11+:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install https://github.com/adidshaft/grok-gadgets-home-assistant/releases/download/v0.1.0-alpha.5/grok_gadgets_home_assistant-0.1.0a5-py3-none-any.whl
+.venv/bin/ha-probe --help
+```
+
+On an Intel Mac, `cryptography` has no prebuilt wheel and needs a Rust toolchain to build.
 
 ## Why a probe
 
@@ -83,6 +98,6 @@ Contribute on the `dev` branch; `main` holds tagged stable releases ([branches](
 ## License and affiliation
 
 Apache-2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE). [uv.lock](uv.lock) pins the dependencies; the packages are not on PyPI yet. Grok Gadgets is an independent open-source
-project. It is **not affiliated with, endorsed by or sponsored by SpaceXAI**, which
+project. It is **not affiliated with, endorsed by or sponsored by SpaceXSI**, which
 make Grok and Grok Bot, nor with Home Assistant. We reconstructed the pre-publication commit dates; see the
 [history record](https://github.com/adidshaft/grok-gadgets/blob/main/docs/verification/publication-sanitization.md).

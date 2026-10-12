@@ -407,5 +407,35 @@
       "2026-10-05 finish review: shortened README and removed duplicate setup/security detail. docs/setup.md checks secret-backed bearer or compatible OAuth before remote exposure; bearer fallback is conditional, not a promised path. Full local check sequence passes: frozen install, Ruff lint/format, 26 tests, wheel/sdist and fixture probe (2 tools/1 resource/1 prompt; zero calls/reads; Grok/hardware false). No real Home Assistant, account, tunnel or paid service used."
     ],
     "blocker": null
+  },
+  {
+    "id": "DOC-STE-001",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "Align current documentation with 12 October evidence and plain-language style",
+    "acceptance": [
+      "Use SpaceXSI in current tracked text",
+      "Separate physical kit evidence from native Grok Bot MCP verification",
+      "Use short instructions and link to current evidence"
+    ],
+    "labels": [
+      "documentation"
+    ],
+    "stage": "done",
+    "evidence": "Documentation-only review. Dated receipts and checksum-pinned protocol copies remain historical evidence. See the accompanying PR for check results."
+  },
+  {
+    "id": "HA-PYPI-001",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "No release automation; SHA256SUMS listed dist/ paths; nothing could publish to PyPI",
+    "acceptance": [
+      "Hand-started workflow checks tag/version, builds once, writes and checks plain-name SHA256SUMS",
+      "Attaches files to the release without replacing assets",
+      "Opt-in PyPI upload through trusted publishing; no stored token"
+    ],
+    "labels": [
+      "enhancement"
+    ],
+    "stage": "review",
+    "evidence": "GitHub #48, PR #49; .github/workflows/release.yml and docs/release.md. actionlint clean. Not yet run on GitHub; the owner's PyPI setup is pending."
   }
 ]
