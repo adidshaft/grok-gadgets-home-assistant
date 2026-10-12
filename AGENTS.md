@@ -6,7 +6,7 @@ Use main and short feature branches, small tested commits referencing the local 
 
 Research tasks use the strongest available reasoning and cite primary sources; documentation-only tasks reuse the dated feasibility records unless research is explicitly assigned. Public cross-repository policy links use owner adidshaft; private fallback contact is adidshaft@kyokasuigetsu.xyz. Do not present planned reporting/CI/release channels as activated. Keep workflow edits with their assigned owner.
 
-**Grok Bot only.** The product, its docs, website, examples, tests, commits and branch names describe Grok Bot and SpaceXAI technology as the only assistant platform. Do not name, recommend or credit other AI assistants, models, chat products, coding agents or editors anywhere in the repository. Development tooling stays out of the record.
+**Grok Bot only.** The product, its docs, website, examples, tests, commits and branch names describe Grok Bot and SpaceXSI technology as the only assistant platform. Do not name, recommend or credit other AI assistants, models, chat products, coding agents or editors anywhere in the repository. Development tooling stays out of the record.
 
 ## Ignore rules and publication privacy
 
