@@ -24,7 +24,6 @@ Each [GitHub release](https://github.com/adidshaft/grok-gadgets-home-assistant/r
 
 On an Intel Mac, `cryptography` has no prebuilt wheel and needs a Rust toolchain to build.
 
-
 ## Quickstart
 
 For contributors: use Python 3.11+, Git and [`uv`](https://docs.astral.sh/uv/). This fixture needs no home, account or token.
@@ -52,7 +51,6 @@ Expected result (other fixed flags omitted):
 ```
 
 Next: [prepare a Home Assistant test user](docs/setup.md#2-prepare-home-assistant-safely).
-
 
 ## Why a probe
 

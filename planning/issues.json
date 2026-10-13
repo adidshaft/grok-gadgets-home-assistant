@@ -435,8 +435,8 @@
     "labels": [
       "enhancement"
     ],
-    "stage": "review",
-    "evidence": "GitHub #48, PR #49; .github/workflows/release.yml and docs/release.md. actionlint clean. Not yet run on GitHub; the owner's PyPI setup is pending."
+    "stage": "done",
+    "evidence": "GitHub #48, PR #49; .github/workflows/release.yml and docs/release.md. actionlint clean. Publication verified on 13 October 2026: grok-gadgets-home-assistant 0.1.0a5 is live on PyPI through owner-approved trusted publishing."
   },
   {
     "id": "DOC-STE-002",
