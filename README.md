@@ -3,10 +3,18 @@
 Check what Home Assistant's own MCP server would offer your Grok Bot. `ha-probe` lists its
 tools, resources and prompts without ever calling a tool or reading a resource. Experimental
 alpha: this Home Assistant integration has no verified real-home or Grok Bot result yet. See the
-[project status](https://grok-gadgets.pages.dev/doc-docs-public-support-matrix).
+[project status](https://grokgadgets.org/doc-docs-public-support-matrix).
 Independent project, not affiliated with SpaceXSI or Home Assistant.
 
 > Writing style: ASD-STE100-inspired English. Use short sentences, active verbs and one instruction per step. This is not certified compliance.
+
+## Start here
+
+| Path | Next step |
+| --- | --- |
+| [Try the probe](#quickstart) | Use a fixture without a home server |
+| [Check a home server](docs/setup.md) | Read the authentication limits first |
+| [See project status](https://grokgadgets.org/doc-docs-public-support-matrix) | Separate the kit results from this integration |
 
 ## Install from PyPI
 
@@ -70,6 +78,9 @@ The [setup guide](docs/setup.md) walks through a test user with _Control Home As
 and revoke it after testing.
 
 ## Grok Bot today
+
+The owner verified the separate gateway route with OAuth from Mac and iPhone.
+That result does not verify Home Assistant authentication or home control.
 
 Connecting a Grok Bot needs a reachable HTTPS URL with compatible authentication; check the
 [remote-route gate](docs/setup.md#4-remote-route) before you expose a home server. This
