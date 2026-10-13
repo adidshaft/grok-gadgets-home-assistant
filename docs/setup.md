@@ -76,6 +76,10 @@ This LAN URL is only for the local probe. Grok Bot runs in the cloud and cannot 
 
 ## 4. Remote route
 
+The owner verified the separate Grok Gadgets gateway through OAuth on 13 October 2026.
+The personal Grok Bot app had no fixed-header form. This does not verify Home Assistant OAuth.
+Read the [gateway connection record](https://github.com/adidshaft/grok-gadgets/blob/main/docs/verification/grok-remote-https-2026-10-13.md).
+
 **Check authentication before enabling remote access.** Your personal Grok Bot must offer either
 a secret-backed bearer header or OAuth compatible with Home Assistant. Neither has been verified here.
 If the account lacks both, stop: an HTTPS URL or tunnel cannot solve that mismatch.
@@ -142,6 +146,9 @@ A Home Assistant token there can give teammates and connected Slack conversation
 4. Ask the Bot to list the Home Assistant tools. Then go to [Check the connection](#5-check-the-connection).
 
 ### Current reported blocker
+
+The owner’s 13 October gateway test confirmed that a fixed bearer-header form was unavailable.
+Use OAuth only if the Home Assistant flow is compatible. That compatibility remains untested here.
 
 The [feasibility record](feasibility.md) preserves a September 2026 community report that custom MCP
 requires OAuth Dynamic Client Registration and lacks a safe secret-header field. It is not a primary
