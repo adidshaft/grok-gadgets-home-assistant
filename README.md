@@ -8,9 +8,25 @@ Independent project, not affiliated with SpaceXSI or Home Assistant.
 
 > Writing style: ASD-STE100-inspired English. Use short sentences, active verbs and one instruction per step. This is not certified compliance.
 
+## Install from PyPI
+
+The package is on [PyPI](https://pypi.org/project/grok-gadgets-home-assistant/). Install it into a virtual
+environment with Python 3.11+. It is an alpha, so name the version or pass `--pre`:
+
+```sh
+python3 -m venv .venv
+.venv/bin/python -m pip install --pre grok-gadgets-home-assistant
+.venv/bin/ha-probe --version
+```
+
+Each [GitHub release](https://github.com/adidshaft/grok-gadgets-home-assistant/releases) also has the wheel and
+`SHA256SUMS`; the PyPI files are the same build.
+
+On an Intel Mac, `cryptography` has no prebuilt wheel and needs a Rust toolchain to build.
+
 ## Quickstart
 
-You need Python 3.11+, Git and [`uv`](https://docs.astral.sh/uv/). No home, account or token.
+For contributors: use Python 3.11+, Git and [`uv`](https://docs.astral.sh/uv/). This fixture needs no home, account or token.
 
 ```sh
 git clone https://github.com/adidshaft/grok-gadgets-home-assistant.git
@@ -35,22 +51,6 @@ Expected result (other fixed flags omitted):
 ```
 
 Next: [prepare a Home Assistant test user](docs/setup.md#2-prepare-home-assistant-safely).
-
-### Install with pip
-
-The package is on [PyPI](https://pypi.org/project/grok-gadgets-home-assistant/). Install it into a virtual
-environment with Python 3.11+. It is an alpha, so name the version or pass `--pre`:
-
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install --pre grok-gadgets-home-assistant
-.venv/bin/ha-probe --version
-```
-
-Each [GitHub release](https://github.com/adidshaft/grok-gadgets-home-assistant/releases) also has the wheel and
-`SHA256SUMS`; the PyPI files are the same build.
-
-On an Intel Mac, `cryptography` has no prebuilt wheel and needs a Rust toolchain to build.
 
 ## Why a probe
 
