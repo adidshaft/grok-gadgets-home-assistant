@@ -115,3 +115,8 @@ Apache-2.0; see [LICENSE](LICENSE) and [NOTICE](NOTICE). [uv.lock](uv.lock) pins
 project. It is **not affiliated with, endorsed by or sponsored by SpaceXSI**, which
 make Grok and Grok Bot, nor with Home Assistant. We reconstructed the pre-publication commit dates; see the
 [history record](https://github.com/adidshaft/grok-gadgets/blob/main/docs/verification/publication-sanitization.md).
+
+## Project discussion
+
+Ask questions and share gadget ideas in [hub Discussions](https://github.com/adidshaft/grok-gadgets/discussions).
+Use this repository's issue forms for defects.
