@@ -435,7 +435,39 @@
     "labels": [
       "enhancement"
     ],
+    "stage": "done",
+    "evidence": "GitHub #48, PR #49; .github/workflows/release.yml and docs/release.md. actionlint clean. Publication verified on 13 October 2026: grok-gadgets-home-assistant 0.1.0a5 is live on PyPI through owner-approved trusted publishing."
+  },
+  {
+    "id": "DOC-STE-002",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "Current install and kit guidance after the 13 October releases",
+    "acceptance": [
+      "Published package installation precedes source setup where available",
+      "Current owner evidence and remaining verification gates stay distinct"
+    ],
+    "dependencies": [],
+    "labels": [
+      "documentation"
+    ],
+    "milestone": "Documentation upkeep",
+    "stage": "done",
+    "commits": [],
+    "evidence": "Ruff check and format pass; 27 unit tests pass."
+  },
+  {
+    "id": "DOC-PHASE8-001",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "Current documentation needs the verified Phase 8 route and clear start paths",
+    "acceptance": [
+      "Keep owner-only evidence and remaining gates explicit",
+      "Separate the current route from proposed relay work",
+      "Link three start paths from the README"
+    ],
+    "labels": [
+      "documentation"
+    ],
     "stage": "review",
-    "evidence": "GitHub #48, PR #49; .github/workflows/release.yml and docs/release.md. actionlint clean. Not yet run on GitHub; the owner's PyPI setup is pending."
+    "evidence": "GitHub #63; README and current documentation reviewed against the 13 October owner handoff. No new hardware or Grok Bot test. 27 unit tests and Ruff lint/format passed."
   }
 ]

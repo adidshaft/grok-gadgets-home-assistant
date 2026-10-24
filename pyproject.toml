@@ -1,6 +1,6 @@
 [project]
 name = "grok-gadgets-home-assistant"
-version = "0.1.0a5"
+version = "0.1.0a6"
 description = "Read-only Home Assistant MCP compatibility diagnostics for Grok Gadgets"
 requires-python = ">=3.11"
 license = "Apache-2.0"
@@ -37,7 +37,7 @@ build-backend = "hatchling.build"
 packages = ["src/ha_probe"]
 
 [dependency-groups]
-dev = ["ruff==0.16.10"]
+dev = ["ruff==0.17.1"]
 
 [tool.ruff]
 line-length = 100
