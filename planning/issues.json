@@ -469,5 +469,22 @@
     ],
     "stage": "review",
     "evidence": "GitHub #63; README and current documentation reviewed against the 13 October owner handoff. No new hardware or Grok Bot test. 27 unit tests and Ruff lint/format passed."
+  },
+  {
+    "id": "HA-COMMUNITY-X-001",
+    "owner": "grok-gadgets-home-assistant",
+    "problem": "Community links direct people to the former Reddit community",
+    "acceptance": [
+      "README, support policy and issue contact link point to the Grok Gadgets X Community"
+    ],
+    "dependencies": [],
+    "labels": [
+      "documentation",
+      "community"
+    ],
+    "milestone": "Documentation upkeep",
+    "stage": "done",
+    "commits": [],
+    "evidence": "CTA links and Git diff reviewed; Ruff, format check and 27 unit tests passed."
   }
 ]
