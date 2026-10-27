@@ -23,7 +23,7 @@ Use the [issue chooser](https://github.com/adidshaft/grok-gadgets-home-assistant
 - Evidence source: fixture or real installation.
 - Expected result and actual result.
 
-Use [r/GrokGadgets](https://www.reddit.com/r/GrokGadgets/) for discussion.
+Use [Grok Gadgets community on X](https://x.com/i/communities/2026191471578067281) for discussion.
 Use [Security](SECURITY.md) for vulnerabilities.
 Send private conduct reports to [adidshaft@kyokasuigetsu.xyz](mailto:adidshaft@kyokasuigetsu.xyz).
 

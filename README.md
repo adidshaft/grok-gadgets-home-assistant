@@ -102,7 +102,7 @@ this repository is part of [Grok Gadgets](https://github.com/adidshaft/grok-gadg
 ## Community
 
 Share what your home exposes, ask questions and suggest ideas on
-[r/GrokGadgets](https://www.reddit.com/r/GrokGadgets/), under the project's
+[Grok Gadgets community on X](https://x.com/i/communities/2026191471578067281), under the project's
 [Code of Conduct](https://github.com/adidshaft/grok-gadgets/blob/main/CODE_OF_CONDUCT.md).
 Report bugs through the [issue chooser](https://github.com/adidshaft/grok-gadgets-home-assistant/issues/new/choose).
 New here? Pick a [good first issue](https://github.com/adidshaft/grok-gadgets-home-assistant/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
